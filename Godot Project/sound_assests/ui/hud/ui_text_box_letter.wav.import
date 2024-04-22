@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ui_text_box_letter.wav-9a40425fe43a2b93c6c5aadece2aae2f.sample"
+
+[deps]
+
+source_file="res://sound_assests/ui/hud/ui_text_box_letter.wav"
+dest_files=[ "res://.import/ui_text_box_letter.wav-9a40425fe43a2b93c6c5aadece2aae2f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

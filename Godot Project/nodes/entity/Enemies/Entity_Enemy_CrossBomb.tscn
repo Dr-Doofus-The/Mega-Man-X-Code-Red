@@ -1,0 +1,181 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://sprites/enemies/spr_enemy_cross_bomb.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Enemy/EntityEnemy_Crossbomb.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28, 28 )
+
+[sub_resource type="Shader" id=29]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=30]
+resource_local_to_scene = true
+shader = SubResource( 29 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.34552, 0.796875, 0.766275, 1 )
+shader_param/C2 = Color( 0.556863, 0.901961, 0.878431, 1 )
+shader_param/C3 = Color( 0.803922, 0.945098, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 37, 37 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 1 )
+region = Rect2( 37, 0, 37, 37 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 44 ) ],
+"loop": false,
+"name": "standard",
+"speed": 0.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 15, 14.5 )
+
+[sub_resource type="Animation" id=39]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "beep"
+length = 0.375
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0416667, 0.125, 0.166667, 0.25, 0.291667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_beep"
+}, {
+"args": [  ],
+"method": "play_beep"
+}, {
+"args": [  ],
+"method": "play_beep"
+}, {
+"args": [ 0 ],
+"method": "cross_explosion"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 14, 13.5 )
+
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 15, 14.5 )
+
+[node name="EntityEnemy_CrossBomb" instance=ExtResource( 2 )]
+collision_mask = 0
+script = ExtResource( 3 )
+hp_max = 2
+gravityenabled = false
+Die_On_0_HP = false
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 30 )
+frames = SubResource( 3 )
+animation = "standard"
+
+[node name="HealthBar" parent="Sprite" index="0"]
+visible = false
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+position = Vector2( -1, 0.5 )
+scale = Vector2( 1.6, 1.55 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 42 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/RESET = SubResource( 39 )
+anims/beep = SubResource( 40 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 31 )
+
+[node name="Hitbox" parent="." index="6"]
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 41 )
+
+[node name="Timer" type="Timer" parent="." index="9"]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+
+[connection signal="Damage_taken" from="." to="." method="_on_EntityEnemy_CrossBomb_Damage_taken"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="damage_dealt" from="Hitbox" to="." method="_on_Hitbox_damage_dealt"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

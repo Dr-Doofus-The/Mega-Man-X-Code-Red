@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_f_wave_charged.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[node name="Area2D" instance=ExtResource( 2 )]
+collision_mask = 1
+script = ExtResource( 3 )
+projectile_speed = 4
+stay = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 2 )
+
+[node name="Hitbox" parent="." index="3"]
+collision_layer = 16
+collision_mask = 4
+damage = 3
+linger_frames = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="." index="4"]
+process_mode = 0
+wait_time = 0.1
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="5"]
+position = Vector2( 16, -16 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

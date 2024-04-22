@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_fire_wave.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 75, 0, 25, 25 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 25, 25 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 25, 0, 25, 25 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 50, 0, 25, 25 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "default",
+"speed": 32.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[node name="Proj_FlameThrower" instance=ExtResource( 1 )]
+collision_mask = 1
+projectile_speed = 6
+lifetime = 0.2
+destroy_on_contact = true
+auto_rotate_sprite = false
+random_sprite_v_flip = true
+ProjClass = "Proj_Bullet"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 8 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+scale = Vector2( 1.2, 1 )
+frames = SubResource( 6 )
+frame = 3
+
+[node name="Hitbox" parent="." index="3"]
+collision_layer = 128
+collision_mask = 6
+monitoring = false
+damage = 3
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 7 )
+
+[node name="Main_Light" parent="." index="4"]
+enabled = false
+
+[editable path="Hitbox"]

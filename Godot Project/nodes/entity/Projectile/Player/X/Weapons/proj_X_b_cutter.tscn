@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_b_cutter_normal.gd" type="Script" id=1]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_boomerang.png" type="Texture" id=2]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_assests/projectiles/snd_boomerang.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[node name="Area2D" instance=ExtResource( 3 )]
+collision_mask = 34
+script = ExtResource( 1 )
+projectile_speed = 8
+piercing = true
+ProjClass = "Proj_Null"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 2 )
+
+[node name="Hitbox" parent="." index="4"]
+collision_layer = 16
+collision_mask = 4
+damage = 6
+hitbox_name = "BOOMERANG_CUTTER"
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="." index="5"]
+playback_process_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 4 )
+volume_db = 4.5
+autoplay = true
+bus = "Projectiles"
+
+[node name="Timer" type="Timer" parent="." index="7"]
+process_mode = 0
+wait_time = 0.3
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area2D_body_exited"]
+[connection signal="tree_exiting" from="." to="." method="_on_Area2D_tree_exiting"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

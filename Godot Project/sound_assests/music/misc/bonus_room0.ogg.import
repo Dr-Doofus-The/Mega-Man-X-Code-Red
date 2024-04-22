@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bonus_room0.ogg-047ab73f7fcc02007edab4e8c056a58e.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/misc/bonus_room0.ogg"
+dest_files=[ "res://.import/bonus_room0.ogg-047ab73f7fcc02007edab4e8c056a58e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://nodes/managers/Stage_music_setter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/UI/HUD/HUD_Control.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/misc/GameCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/managers/Level_Base.gd" type="Script" id=4]
+
+[node name="Level_Base" type="Node"]
+script = ExtResource( 4 )
+
+[node name="Stage_music_setter" parent="." instance=ExtResource( 1 )]
+stage_music_path = "res://sound_assests/music/stage/ice_brain.ogg"
+volume = 3.0
+
+[node name="Light_Level" type="CanvasModulate" parent="."]
+
+[node name="Tween" type="Tween" parent="Light_Level"]
+
+[node name="Game_Camera" parent="." instance=ExtResource( 3 )]
+limit_left = 3000
+limit_top = -5000
+limit_right = 300000
+limit_bottom = 300000
+smoothing_speed = 20.0
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
+
+[node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="Player_holder" type="Node" parent="."]
+
+[node name="CameraBounds" type="Node" parent="."]
+
+[node name="PickUps" type="Node" parent="."]
+
+[node name="EnemySpawners" type="Node" parent="."]
+
+[node name="Animated_Objects" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Game_Objects" type="Node" parent="."]
+
+[node name="Particle_Systems" type="Node" parent="."]

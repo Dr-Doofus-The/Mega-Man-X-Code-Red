@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hunter_base_clean.ogg-e62b36f0c53a1550f2b5be3b79a7f569.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/stage/hunter_base_clean.ogg"
+dest_files=[ "res://.import/hunter_base_clean.ogg-e62b36f0c53a1550f2b5be3b79a7f569.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=1.66

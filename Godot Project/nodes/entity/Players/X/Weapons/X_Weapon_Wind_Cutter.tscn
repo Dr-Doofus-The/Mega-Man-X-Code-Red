@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_wind_cutter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_weapon_base.tscn" type="PackedScene" id=4]
+
+[node name="Wind_Cutter" instance=ExtResource( 4 )]
+Weapon_Icon_Frame = 5
+normal_shot = ExtResource( 2 )
+saber_anim = "Wind_Cutter"
+normal_shot_cost = 1
+charged_shot_cost = 4
+saber_shot_cost = 4
+max_on_screen = 1
+Ammo_capacity = 32
+color_palette_coordinate = Vector2( 0.34, 0.712 )
+fire_color_palette_coordinate = Vector2( 0.34, 0.712 )
+Weapon_Color = Color( 0.819608, 0.278431, 0.898039, 1 )
+
+[node name="Sound" parent="." index="1"]
+volume_db = 4.5

@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/particle/Particle_Projectile_Intro.gd" type="Script" id=1]
+[ext_resource path="res://nodes/particles/ParticleBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_X_Buster_1_intro.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 27, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 27, 0, 27, 26 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 54, 0, 27, 26 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 81, 0, 27, 26 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "default",
+"speed": 30.0
+} ]
+
+[node name="ParticleBase" instance=ExtResource( 2 )]
+frames = SubResource( 1 )
+script = ExtResource( 1 )
+
+[connection signal="tree_exiting" from="." to="." method="_on_ParticleBase_tree_exiting"]

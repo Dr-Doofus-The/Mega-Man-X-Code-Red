@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_weapon_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_e_spark_normal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_e_spark_charged_spawner.tscn" type="PackedScene" id=4]
+
+[node name="Volt_Tornado" instance=ExtResource( 2 )]
+Weapon_Name = "Electric Spark"
+Weapon_Icon_Frame = 6
+normal_shot = ExtResource( 3 )
+charged_shot = ExtResource( 4 )
+saber_anim = "Wind_Cutter"
+normal_shot_cost = 1
+charged_shot_cost = 3
+max_on_screen = 1
+Ammo_capacity = 38
+color_palette_coordinate = Vector2( 0.447, 0.387 )
+fire_color_palette_coordinate = Vector2( 0.562, 0.387 )
+Weapon_Color = Color( 0.921569, 0.529412, 0.180392, 1 )
+light_up_on_fire = true

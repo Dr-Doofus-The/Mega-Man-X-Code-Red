@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/Bosses/Slash_Beast/spr_par_boss_slash_beast_slasher.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 33, 46 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 33, 0, 33, 46 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13, 19 )
+
+[node name="Area2D" instance=ExtResource( 1 )]
+projectile_speed = 7
+stay = true
+auto_rotate_sprite = false
+hitbox_layer = 2
+ProjClass = "Proj_Bullet"
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 3 )
+frame = 1
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+scale = Vector2( 1.7, 2.3 )
+
+[node name="Hitbox" parent="." index="3"]
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 4 )
+
+[editable path="Hitbox"]

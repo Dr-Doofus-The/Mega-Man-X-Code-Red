@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ice_brain.ogg-6919980e36b6fb03d05bf37a0c744859.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/stage/ice_brain.ogg"
+dest_files=[ "res://.import/ice_brain.ogg-6919980e36b6fb03d05bf37a0c744859.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=13.8

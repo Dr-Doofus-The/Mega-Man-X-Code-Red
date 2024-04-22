@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://sprites/projectile/Bosses/HiMax/spr_proj_himax_med_ball.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Projectile/Boss/High Max/Proj_Max_linger.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 56, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 112, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 168, 0, 56, 56 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 224, 0, 56, 56 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 15.0333
+
+[node name="proj_himax_linger" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+projectile_speed = 0
+stay = true
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 6 )
+frame = 2
+
+[node name="Hitbox" parent="." index="4"]
+collision_layer = 128
+collision_mask = 2
+damage = 3
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="." index="5"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

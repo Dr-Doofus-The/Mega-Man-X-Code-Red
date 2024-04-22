@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/particle/Particle_Part_Explosion.gd" type="Script" id=1]
+
+[node name="Part_Explosion" type="AnimatedSprite"]
+script = ExtResource( 1 )

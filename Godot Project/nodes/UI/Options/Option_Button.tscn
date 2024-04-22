@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://fonts/7x10_font.tres" type="BitmapFont" id=1]
+[ext_resource path="res://scripts/UI/Options_Menu/Option_Button.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Fonts/spr_font_7x10.png" type="Texture" id=3]
+[ext_resource path="res://sprites/UI/Pause_menu/spr_ui_pause_screen_slider.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="ImageTexture" id=6]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 10, 7, 10 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 12, 10 )
+margin_left = 4.0
+margin_right = 4.0
+expand_margin_left = 3.0
+expand_margin_right = 2.0
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[node name="Option_Button" type="Button"]
+margin_right = 250.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 250, 14 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ 221.0 ]
+}
+
+[node name="Text_1" type="Label" parent="."]
+margin_left = -1.0
+margin_right = 39.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "TEST"
+valign = 1
+uppercase = true
+
+[node name="Text_2" type="Label" parent="."]
+margin_left = 221.0
+margin_right = 221.0
+margin_bottom = 14.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "OFF"
+valign = 1
+uppercase = true
+
+[node name="Arrows" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Left_Arrow" type="Label" parent="Arrows"]
+margin_left = 199.0
+margin_right = 206.0
+margin_bottom = 14.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 7, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "<"
+valign = 1
+uppercase = true
+
+[node name="Right_Arrow" type="Label" parent="Arrows"]
+margin_left = 236.0
+margin_right = 243.0
+margin_bottom = 14.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = ">"
+valign = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="."]
+visible = false
+margin_left = 157.0
+margin_top = -3.0
+margin_right = 251.0
+margin_bottom = 13.0
+custom_icons/tick = SubResource( 6 )
+custom_icons/grabber_disabled = SubResource( 7 )
+custom_styles/slider = SubResource( 8 )
+custom_styles/grabber_area_highlight = SubResource( 9 )
+custom_styles/grabber_area = SubResource( 10 )
+max_value = 10.0
+editable = false
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+
+[connection signal="button_down" from="." to="." method="_on_Option_Button_button_down"]
+[connection signal="focus_entered" from="." to="." method="_on_Option_Button_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_Option_Button_focus_exited"]
+[connection signal="visibility_changed" from="." to="." method="selection_change"]
+[connection signal="visibility_changed" from="." to="." method="_on_Option_Button_visibility_changed"]

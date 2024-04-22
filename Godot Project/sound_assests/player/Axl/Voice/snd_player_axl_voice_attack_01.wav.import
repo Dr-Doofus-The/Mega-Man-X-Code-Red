@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_player_axl_voice_attack_01.wav-b4c3257dc9a401483283d7cda4995168.sample"
+
+[deps]
+
+source_file="res://sound_assests/player/Axl/Voice/snd_player_axl_voice_attack_01.wav"
+dest_files=[ "res://.import/snd_player_axl_voice_attack_01.wav-b4c3257dc9a401483283d7cda4995168.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

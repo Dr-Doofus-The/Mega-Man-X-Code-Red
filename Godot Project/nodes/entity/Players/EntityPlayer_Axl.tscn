@@ -1,0 +1,353 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://nodes/entity/Players/EntityPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/character/Player/Axl/color_pallete_axl.png" type="Texture" id=2]
+[ext_resource path="res://sprites/character/Player/Axl/sprite_sheet/spr_pla_axl_idle.png" type="Texture" id=3]
+[ext_resource path="res://scripts/entity/Player/Axl/Entity_Player_Axl_animation.gd" type="Script" id=4]
+[ext_resource path="res://scripts/entity/Player/Axl/Entity_Player_Axl_Weapon_Manager.gd" type="Script" id=5]
+[ext_resource path="res://sound_assests/player/Axl/snd_player_axl_copy.wav" type="AudioStream" id=6]
+[ext_resource path="res://scripts/entity/Player/Entity_Player_Axl.gd" type="Script" id=7]
+
+[sub_resource type="Shader" id=153]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+uniform vec2 frame_count;
+uniform vec2 frame_coordinate;
+
+
+
+void fragment() {
+	vec4 rgba = texture(TEXTURE, UV);
+	vec4 final_color = texture(palette, vec2(rgba.r, rgba.g)/(frame_count + vec2(1.0,1.0)) + frame_coordinate);
+	final_color.a = rgba.a;
+	
+	COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=154]
+resource_local_to_scene = true
+shader = SubResource( 153 )
+shader_param/frame_count = Vector2( 1, 0 )
+shader_param/frame_coordinate = Vector2( -0.015, -0.036 )
+shader_param/palette = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 107, 107 )
+
+[sub_resource type="SpriteFrames" id=156]
+animations = [ {
+"frames": [ SubResource( 158 ), SubResource( 158 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 17, 23 )
+
+[sub_resource type="Animation" id=161]
+resource_name = "Copy"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1 ),
+"transitions": PoolRealArray( 3.13834, 1, 2.21914, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ), Vector2( 0, -10 ), Vector2( 0, -10 ), Vector2( 0, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 3.73213, 1 ),
+"update": 0,
+"values": [ 0.0, 1440.0 ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Sounds/AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
+
+[sub_resource type="Animation" id=157]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=159]
+resource_name = "Switch_In"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 0.31864, 2.54912, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -483 ), Vector2( 0, -20 ), Vector2( 0, 10 ), Vector2( 0, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 0.31864, 2.54912, 1 ),
+"update": 0,
+"values": [ Vector2( 0.392523, 1.85047 ), Vector2( 2.54206, 0.448598 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=160]
+resource_name = "Switch_Out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.329877 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.517632 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=162]
+resource_name = "Teleport_In"
+step = 0.042
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.252 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -300 ), Vector2( 0, -3 ) ]
+}
+
+[sub_resource type="Animation" id=163]
+resource_name = "Teleport_Out"
+step = 0.042
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ), Vector2( 0, -300 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=152]
+extents = Vector2( 7, 13 )
+
+[node name="EntityPlayer_Axl" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
+character_name = 2
+
+[node name="Axl_Weapon_Manager" type="Node2D" parent="." index="0"]
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="Axl_Weapon_Manager" index="0"]
+process_mode = 0
+wait_time = 0.11
+one_shot = true
+
+[node name="Projectile_holder" type="Node" parent="Axl_Weapon_Manager" index="1"]
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 154 )
+position = Vector2( 0, -3 )
+frames = SubResource( 156 )
+playing = true
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="6"]
+anims/Copy = SubResource( 161 )
+anims/RESET = SubResource( 157 )
+anims/Switch_In = SubResource( 159 )
+anims/Switch_Out = SubResource( 160 )
+anims/Teleport_In = SubResource( 162 )
+anims/Teleport_Out = SubResource( 163 )
+
+[node name="RC_wall_left" parent="." index="7"]
+position = Vector2( -19, -23 )
+cast_to = Vector2( 0, 42 )
+
+[node name="RC_wall_right" parent="." index="8"]
+position = Vector2( 19, -23 )
+cast_to = Vector2( 0, 42 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 152 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds" index="10"]
+stream = ExtResource( 6 )
+volume_db = 4.0
+
+[node name="Main_Light" parent="." index="26"]
+visible = false
+
+[node name="Flash_timer" type="Timer" parent="." index="27"]
+process_mode = 0
+wait_time = 0.05
+one_shot = true
+
+[connection signal="Damage_taken" from="." to="Axl_Weapon_Manager" method="_on_EntityPlayer_Axl_Damage_taken"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Axl_Weapon_Manager" method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Hurtbox"]

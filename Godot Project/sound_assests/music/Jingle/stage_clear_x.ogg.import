@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stage_clear_x.ogg-25c64d99b25bb7a2b2cabfdc7338cce9.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/Jingle/stage_clear_x.ogg"
+dest_files=[ "res://.import/stage_clear_x.ogg-25c64d99b25bb7a2b2cabfdc7338cce9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

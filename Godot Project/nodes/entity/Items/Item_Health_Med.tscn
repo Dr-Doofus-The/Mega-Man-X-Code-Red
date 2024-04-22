@@ -1,0 +1,87 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://sprites/Pickups/Health/health_piece_med_loop.png" type="Texture" id=1]
+[ext_resource path="res://sprites/Pickups/Health/health_piece_med_in.png" type="Texture" id=2]
+[ext_resource path="res://nodes/entity/Items/ItemBase.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11, 6.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11, 11 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 22, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 44, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 22, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 44, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 66, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 110, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 132, 0, 22, 13 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 2 )
+region = Rect2( 154, 0, 22, 13 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "Loop",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": false,
+"name": "Opening",
+"speed": 15.0
+} ]
+
+[node name="Item_Health_Medium" instance=ExtResource( 3 )]
+ItemValue = 4
+Item_size = 1
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." index="1"]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="2"]
+frames = SubResource( 11 )
+animation = "Opening"

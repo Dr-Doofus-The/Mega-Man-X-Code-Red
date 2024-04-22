@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dr_light_theme.ogg-3a78a054974f1f38ffb334537da3d86f.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/cutscene/dr_light_theme.ogg"
+dest_files=[ "res://.import/dr_light_theme.ogg-3a78a054974f1f38ffb334537da3d86f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

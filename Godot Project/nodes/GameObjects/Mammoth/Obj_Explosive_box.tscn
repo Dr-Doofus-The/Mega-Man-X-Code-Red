@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://nodes/entity/EntityBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/GameObjects/Mammoth/spr_obj_explosive_box.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Game_objects/Obj_Explosive_box.gd" type="Script" id=3]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 15, 16.5 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 48 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 21.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 17, 22 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 40.0
+
+[node name="Obj_Explosive_Box" instance=ExtResource( 1 )]
+z_index = -1
+collision_layer = 65
+collision_mask = 65
+collision/safe_margin = 0.001
+moving_platform_apply_velocity_on_leave = 2
+script = ExtResource( 3 )
+hp_max = 4
+Die_On_0_HP = false
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 5 )
+
+[node name="Sprite" parent="." index="1"]
+frames = SubResource( 4 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+rect = Rect2( -16, -24, 32, 48 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 5 )
+
+[node name="Hurtbox" parent="." index="5"]
+collision_layer = 0
+collision_mask = 468
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, 2.5 )
+shape = SubResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, 3 )
+shape = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="." index="7"]
+process_mode = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="Hitbox" parent="." index="8" instance=ExtResource( 4 )]
+position = Vector2( 0, 8 )
+collision_layer = 128
+collision_mask = 70
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Hitbox_timer" type="Timer" parent="." index="9"]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="Yield_timer" type="Timer" parent="." index="10"]
+wait_time = 0.1
+
+[connection signal="Damage_taken" from="." to="." method="_on_Obj_Explosive_Box_Damage_taken"]
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Hitbox_timer" to="." method="_on_Hitbox_timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

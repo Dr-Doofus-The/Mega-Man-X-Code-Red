@@ -1,0 +1,13 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+valid=false
+
+[deps]
+
+source_file="res://JSON/Reploid_List.csv"
+[params]
+
+compress=true
+delimiter=0

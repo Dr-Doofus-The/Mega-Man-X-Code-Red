@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Misc/GameCamera.gd" type="Script" id=1]
+
+[node name="Game_Camera" type="Camera2D"]
+pause_mode = 1
+process_priority = -2
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 0
+limit_bottom = 0
+drag_margin_v_enabled = true
+drag_margin_top = 0.12
+drag_margin_bottom = 0.07
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0

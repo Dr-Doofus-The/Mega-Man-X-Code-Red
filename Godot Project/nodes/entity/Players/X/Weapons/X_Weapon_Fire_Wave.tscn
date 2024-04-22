@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_weapon_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_fire_wave_normal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_assests/projectiles/snd_fire_1.wav" type="AudioStream" id=4]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_fire_wave_charged.tscn" type="PackedScene" id=5]
+
+[node name="Fire_Wave" instance=ExtResource( 2 )]
+Weapon_Name = "Fire Wave"
+Weapon_Icon_Frame = 4
+normal_shot = ExtResource( 3 )
+charged_shot = ExtResource( 5 )
+normal_shot_cost = 1
+charged_shot_cost = 2
+max_on_screen = 5
+Ammo_capacity = 28
+color_palette_coordinate = Vector2( 0.673, 0.387 )
+fire_color_palette_coordinate = Vector2( 0.786, 0.387 )
+fx_palette_coordinate = Vector2( 0.674, 0.413 )
+Weapon_Color = Color( 0.909804, 0.278431, 0.247059, 1 )
+light_up_on_fire = true
+Continuous = true
+time_to_decrease = 0.41
+
+[node name="Sound" parent="." index="1"]
+stream = ExtResource( 4 )
+volume_db = 0.5
+pitch_scale = 1.5

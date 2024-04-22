@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://nodes/entity/EntityBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/entity/Enemy/EntityEnemy.gd" type="Script" id=2]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://shaders/entity/Flash_Shader_Simple.tres" type="Material" id=4]
+[ext_resource path="res://sprites/UI/HUD/misc/spr_ui_enemy_health_bar.png" type="Texture" id=5]
+[ext_resource path="res://sprites/UI/HUD/misc/spr_ui_enemy_health_bar_over.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Damage_Flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Damage_Flash_light"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1.4, 1.4, 1.4, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Dying"
+length = 0.16
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "No_Flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="EntityEnemy" groups=["Enemy"] instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 2 )
+Movement_Speed = 0
+Flip_Sprite_To_Match_Direction = true
+DropItem = true
+smoke_on_low_health = false
+piece_explosion = null
+sprite_size = Rect2( 0, 0, 0, 0 )
+long_death = false
+Dna_id_1 = 0
+Dna_id_2 = 0
+enemy_reaction_time = 1.0
+
+[node name="Sprite" parent="." index="0"]
+material = ExtResource( 4 )
+
+[node name="HealthBar" type="TextureProgress" parent="Sprite" index="0"]
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 8.0
+grow_horizontal = 2
+rect_min_size = Vector2( 40, 0 )
+value = 19.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+tint_progress = Color( 0.427451, 0.858824, 0.207843, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+
+[node name="CenterPoint" type="Position2D" parent="Sprite" index="1"]
+
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 4
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource( 3 )]
+collision_mask = 2
+
+[node name="Flash_AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+playback_process_mode = 0
+anims/Damage_Flash = SubResource( 3 )
+anims/Damage_Flash_light = SubResource( 5 )
+anims/Dying = SubResource( 7 )
+anims/No_Flash = SubResource( 4 )
+anims/RESET = SubResource( 6 )
+
+[node name="reaction_time" type="Timer" parent="." index="8"]
+process_mode = 0
+one_shot = true
+autostart = true
+
+[connection signal="Damage_taken" from="." to="." method="_on_EntityEnemy_Damage_taken"]
+[connection signal="stop_behavior" from="." to="." method="_on_EntityEnemy_stop_behavior"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

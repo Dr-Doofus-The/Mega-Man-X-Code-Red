@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sprites/UI/placeholders/ui_arrow_place_holder.png" type="Texture" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Button" type="Button"]
+margin_right = 394.0
+margin_bottom = 20.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option_Name" type="Label" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_right = 40.0
+margin_bottom = 7.0
+text = "Text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option_Answear" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -219.0
+margin_top = -7.0
+margin_right = -19.0
+margin_bottom = 7.0
+text = "Text"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow_Right" type="TextureRect" parent="Option_Answear"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.0
+margin_top = -8.0
+margin_right = 1.0
+margin_bottom = 8.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow_Left" type="TextureRect" parent="Option_Answear"]
+anchor_left = 0.862
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -8.0
+margin_bottom = 8.0
+texture = ExtResource( 1 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,154 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/enemies/mega_turtoise/spr_ene_tortoise.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Enemy/Entity_Enemy_Mega_Tortoise.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=29]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=30]
+resource_local_to_scene = true
+shader = SubResource( 29 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.34552, 0.796875, 0.766275, 1 )
+shader_param/C2 = Color( 0.556863, 0.901961, 0.878431, 1 )
+shader_param/C3 = Color( 0.803922, 0.945098, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 0, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 2 )
+region = Rect2( 234, 0, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=107]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 78, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=108]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 78, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=109]
+atlas = ExtResource( 2 )
+region = Rect2( 234, 78, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=110]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 156, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=111]
+atlas = ExtResource( 2 )
+region = Rect2( 117, 156, 117, 78 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 2 )
+region = Rect2( 234, 156, 117, 78 )
+
+[sub_resource type="SpriteFrames" id=55]
+animations = [ {
+"frames": [ SubResource( 45 ), SubResource( 105 ), SubResource( 47 ), SubResource( 105 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 106 ), SubResource( 107 ), SubResource( 107 ), SubResource( 106 ), SubResource( 108 ), SubResource( 109 ), SubResource( 110 ), SubResource( 107 ), SubResource( 106 ), SubResource( 111 ), SubResource( 54 ), SubResource( 110 ) ],
+"loop": false,
+"name": "fire",
+"speed": 13.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 38, 24.5 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 38, 24.5 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 40, 24.5 )
+
+[node name="EntityEnemy" instance=ExtResource( 1 )]
+position = Vector2( -4, 0 )
+script = ExtResource( 3 )
+hp_max = 54
+gravityenabled = false
+smoke_on_low_health = true
+sprite_size = Rect2( 0, 0, 80, 50 )
+long_death = true
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource( 30 )
+frames = SubResource( 55 )
+frame = 2
+playing = true
+
+[node name="CenterPoint" parent="Sprite" index="1"]
+position = Vector2( -3, 8 )
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+position = Vector2( -0.500002, -0.5 )
+scale = Vector2( 5.75, 3.45 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( -4, 6.5 )
+shape = SubResource( 32 )
+
+[node name="Hurtbox" parent="." index="4"]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -4, 6.5 )
+shape = SubResource( 33 )
+
+[node name="Hitbox" parent="." index="5"]
+collision_layer = 4
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -4, 6.5 )
+shape = SubResource( 34 )
+
+[node name="Timer" type="Timer" parent="." index="8"]
+wait_time = 1.5
+autostart = true
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

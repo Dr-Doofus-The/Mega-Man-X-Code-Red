@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_Weapon_Boomerang_Cutter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_splash_laser.tscn" type="PackedScene" id=2]
+
+[node name="Splash_Laer" instance=ExtResource( 1 )]
+normal_shot = ExtResource( 2 )
+color_palette_coordinate = Vector2( 0.226, 0.394 )
+fire_color_palette_coordinate = Vector2( 0.226, 0.394 )

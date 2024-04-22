@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/projectile/x_buster_level_1.png" type="Texture" id=2]
+[ext_resource path="res://nodes/particles/projectiles/player/par_x_buster_1_impact.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_assests/player/X/snd_player_x_buster_hit.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 2 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 8, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 8, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 8 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 6 ), SubResource( 5 ), SubResource( 4 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 18.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 8, 6 )
+
+[node name="PROJ_X_BUSTER_LVL_1" instance=ExtResource( 1 )]
+projectile_speed = 7
+projectile_impact_fx = ExtResource( 3 )
+projectile_impact_sound = ExtResource( 4 )
+hitbox_layer = 1
+ProjClass = "Proj_Bullet"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 2 )
+frame = 4
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+scale = Vector2( 4.5, 0.3 )
+
+[node name="Hitbox" parent="." index="3"]
+damage = 2
+hitbox_name = "BUSTER_1"
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 8 )
+
+[editable path="Hitbox"]

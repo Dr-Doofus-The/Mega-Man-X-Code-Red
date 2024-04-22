@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Health_Bar_Rise.wav-b0c073b0c8584c9d9794e33a36d67739.sample"
+
+[deps]
+
+source_file="res://sound_assests/ui/hud/Health_Bar_Rise.wav"
+dest_files=[ "res://.import/Health_Bar_Rise.wav-b0c073b0c8584c9d9794e33a36d67739.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_ui_tab_switch.wav-502fae7f92be15eea3a6ab83f5ba1f96.sample"
+
+[deps]
+
+source_file="res://sound_assests/ui/menu/snd_ui_tab_switch.wav"
+dest_files=[ "res://.import/snd_ui_tab_switch.wav-502fae7f92be15eea3a6ab83f5ba1f96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

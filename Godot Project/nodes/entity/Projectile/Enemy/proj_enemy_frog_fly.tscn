@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sprites/enemies/spr_enemy_fly.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 22, 17 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 22, 0, 22, 17 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 17, 22, 17 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 40.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 11, 11 )
+
+[node name="proj_frog_fly" instance=ExtResource( 2 )]
+collision_layer = 4
+collision_mask = 16
+projectile_speed = 2
+destroy_on_contact = true
+homing = true
+homing_power = 0.2
+hitbox_layer = 2
+ProjClass = "Proj_Bullet"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 5 )
+frame = 1
+
+[node name="Hitbox" parent="." index="3"]
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 6 )
+
+[editable path="Hitbox"]

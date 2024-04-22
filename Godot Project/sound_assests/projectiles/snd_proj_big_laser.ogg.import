@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/snd_proj_big_laser.ogg-7711e0f4532c2f7ad9002ad5015c1f5f.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/projectiles/snd_proj_big_laser.ogg"
+dest_files=[ "res://.import/snd_proj_big_laser.ogg-7711e0f4532c2f7ad9002ad5015c1f5f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

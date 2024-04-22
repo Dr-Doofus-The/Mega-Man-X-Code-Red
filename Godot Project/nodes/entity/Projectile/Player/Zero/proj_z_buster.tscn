@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://nodes/particles/projectiles/player/par_x_buster_1_impact.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sound_assests/player/X/snd_player_x_buster_hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://sprites/projectile/Player/Zero/spr_proj_player_Z_buster.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 7 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 30, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 60, 0, 30, 30 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 90, 0, 30, 30 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 18.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 15, 9 )
+
+[node name="PROJ_Z_BUSTER" instance=ExtResource( 2 )]
+Projectile_Name = "z_buster_0"
+projectile_speed = 8
+projectile_impact_fx = ExtResource( 1 )
+projectile_impact_sound = ExtResource( 3 )
+hitbox_layer = 1
+ProjClass = "Proj_Bullet"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 2 )
+frame = 3
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+scale = Vector2( 1.5, 1.4 )
+
+[node name="Hitbox" parent="." index="3"]
+damage = 5
+hitbox_name = "BUSTER_1"
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 8 )
+
+[node name="Main_Light" parent="." index="4"]
+texture_scale = 0.2
+
+[editable path="Hitbox"]

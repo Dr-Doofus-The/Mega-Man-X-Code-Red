@@ -1,0 +1,402 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://scripts/entity/Player/Ent_Player_Checkpoint.gd" type="Script" id=1]
+[ext_resource path="res://sprites/GameObjects/Universal/spr_gobj_checkpoint.png" type="Texture" id=2]
+[ext_resource path="res://sprites/GameObjects/Universal/spr_gobj_checkpoint_palette_off.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Particles/misc/spr_par_teleport_beams.png" type="Texture" id=4]
+[ext_resource path="res://sound_assests/objects/snd_teleporting.wav" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=175]
+extents = Vector2( 16.5, 120 )
+
+[sub_resource type="Gradient" id=178]
+offsets = PoolRealArray( 0, 0.039, 0.04, 0.96, 0.961, 1 )
+colors = PoolColorArray( 0.490196, 0.741176, 1, 1, 0.490196, 0.741176, 1, 1, 0, 0.505882, 1, 1, 0, 0.505882, 1, 1, 0.490196, 0.741176, 1, 1, 0.490196, 0.741176, 1, 1 )
+
+[sub_resource type="GradientTexture" id=179]
+gradient = SubResource( 178 )
+
+[sub_resource type="ConvexPolygonShape2D" id=174]
+points = PoolVector2Array( 18, -9, -18, -9, -42, 4, 42, 4 )
+
+[sub_resource type="Shader" id=153]
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+
+
+void fragment() {
+	vec4 rgba = texture(TEXTURE, UV);
+	vec4 final_color = texture(palette, vec2(rgba.r, rgba.g));
+	final_color.a = rgba.a;
+	
+	COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=154]
+resource_local_to_scene = true
+shader = SubResource( 153 )
+shader_param/palette = ExtResource( 3 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=166]
+atlas = ExtResource( 2 )
+region = Rect2( 79, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=167]
+atlas = ExtResource( 2 )
+region = Rect2( 158, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=168]
+atlas = ExtResource( 2 )
+region = Rect2( 237, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=169]
+atlas = ExtResource( 2 )
+region = Rect2( 316, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=181]
+atlas = ExtResource( 2 )
+region = Rect2( 79, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=182]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=183]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=155]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=156]
+atlas = ExtResource( 2 )
+region = Rect2( 79, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=157]
+atlas = ExtResource( 2 )
+region = Rect2( 158, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 2 )
+region = Rect2( 237, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=159]
+atlas = ExtResource( 2 )
+region = Rect2( 316, 27, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=160]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 54, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=161]
+atlas = ExtResource( 2 )
+region = Rect2( 79, 54, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 2 )
+region = Rect2( 158, 54, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 2 )
+region = Rect2( 237, 54, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 2 )
+region = Rect2( 316, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=170]
+atlas = ExtResource( 2 )
+region = Rect2( 316, 0, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=171]
+atlas = ExtResource( 2 )
+region = Rect2( 316, 54, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=172]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 81, 79, 27 )
+
+[sub_resource type="AtlasTexture" id=173]
+atlas = ExtResource( 2 )
+region = Rect2( 79, 81, 79, 27 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 165 ), SubResource( 166 ), SubResource( 167 ), SubResource( 168 ), SubResource( 169 ) ],
+"loop": false,
+"name": "activate",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 181 ), SubResource( 182 ), SubResource( 183 ) ],
+"loop": false,
+"name": "deactivate",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 155 ), SubResource( 156 ), SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ), SubResource( 161 ), SubResource( 162 ), SubResource( 163 ), SubResource( 164 ), SubResource( 164 ), SubResource( 164 ), SubResource( 164 ) ],
+"loop": true,
+"name": "idle",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "off",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 170 ), SubResource( 171 ), SubResource( 172 ), SubResource( 173 ), SubResource( 172 ), SubResource( 171 ) ],
+"loop": true,
+"name": "transmitting",
+"speed": 55.0
+} ]
+
+[sub_resource type="Animation" id=184]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StaticBody2D/AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "off" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=180]
+resource_name = "Transmit_receiving"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticBody2D/AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "transmitting", "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, -186 ), Vector2( -24, -186 ), Vector2( 0, -186 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "beam_blink"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Particles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.2, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -2.0, -2.0, -26.375 ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=185]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=186]
+lifetime_randomness = 0.24
+emission_shape = 2
+emission_box_extents = Vector3( 20, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 108.57
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+anim_speed = 1.0
+anim_speed_random = 0.31
+
+[node name="Ent_player_checkpoint" type="Area2D"]
+pause_mode = 1
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -65 )
+shape = SubResource( 175 )
+
+[node name="ColorRect" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.486275 )
+margin_top = -186.0
+margin_right = 49.0
+margin_bottom = 56.0
+grow_horizontal = 2
+rect_min_size = Vector2( 1, 0 )
+rect_scale = Vector2( 1e-05, 1 )
+texture = SubResource( 179 )
+expand = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 0, 59 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 174 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="StaticBody2D"]
+modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+material = SubResource( 154 )
+position = Vector2( 1, -2 )
+frames = SubResource( 2 )
+animation = "off"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 184 )
+anims/Transmit_receiving = SubResource( 180 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 185 )
+position = Vector2( 0, 48 )
+z_index = 1
+emitting = false
+speed_scale = 4.0
+process_material = SubResource( 186 )
+texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_Ent_player_checkpoint_body_entered"]
+[connection signal="animation_finished" from="StaticBody2D/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

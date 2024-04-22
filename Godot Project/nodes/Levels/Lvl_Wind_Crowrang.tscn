@@ -1,0 +1,628 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://nodes/GameObjects/Crowrang/gobj_moving_platform_plane.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/misc/GameCamera_Bounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/Levels/Level_Base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/entity/Players/Ent_Player_Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/Backgrounds/AirForce/spr_bg_airforce_layer_4.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Backgrounds/AirForce/spr_bg_airforce_layer_3_bottom.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Backgrounds/AirForce/spr_bg_airforce_layer_2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Backgrounds/AirForce/spr_bg_airforce_layer_1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Backgrounds/AirForce/spr_bg_airforce_layer_0.png" type="Texture" id=9]
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy_Sphere_Copter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://nodes/entity/Enemies/Ent_Enemy_Spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=13]
+[ext_resource path="res://nodes/entity/Enemies/Entity_Enemy_CrossBomb.tscn" type="PackedScene" id=15]
+[ext_resource path="res://nodes/entity/Items/Item_missing_reploid.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scripts/Misc/Shader_pauser.gd" type="Script" id=17]
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy_Diver.tscn" type="PackedScene" id=19]
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy_Giga_Death.tscn" type="PackedScene" id=21]
+[ext_resource path="res://nodes/GameObjects/Obj_flying_platform.tscn" type="PackedScene" id=23]
+
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 429, 130 )
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 594.75, 354.75 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+ 
+uniform vec2 direction = vec2(1.0, 0.0);
+uniform float speed_scale = 0.01;
+uniform float pause_scale = 1.0;
+
+uniform float time;
+
+void fragment(){
+
+	vec2 move = (direction * (time) * speed_scale);
+    COLOR = texture(TEXTURE, UV + move);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 3.0
+shader_param/pause_scale = 1.0
+shader_param/time = null
+
+[sub_resource type="Shader" id=36]
+code = "shader_type canvas_item;
+ 
+uniform vec2 direction = vec2(1.0, 0.0);
+uniform float speed_scale = 0.01;
+uniform float pause_scale = 1.0;
+
+uniform float time;
+
+void fragment(){
+
+	vec2 move = (direction * (time) * speed_scale);
+    COLOR = texture(TEXTURE, UV + move);
+}"
+
+[sub_resource type="ShaderMaterial" id=37]
+resource_local_to_scene = true
+shader = SubResource( 36 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 2.5
+shader_param/pause_scale = 1.0
+shader_param/time = null
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 36 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 0.692
+shader_param/pause_scale = 1.0
+shader_param/time = null
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 1.0
+shader_param/pause_scale = 1.0
+shader_param/time = null
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+ 
+uniform vec2 direction = vec2(1.0, 0.0);
+uniform float speed_scale = 0.01;
+uniform float pause_scale = 1.0;
+
+uniform float time;
+
+void fragment(){
+
+	vec2 move = (direction * (time) * speed_scale);
+    COLOR = texture(TEXTURE, UV + move);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = SubResource( 7 )
+shader_param/direction = Vector2( 1, 0 )
+shader_param/speed_scale = 1.4
+shader_param/pause_scale = 1.0
+shader_param/time = null
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 3000, 10 )
+
+[sub_resource type="RectangleShape2D" id=85]
+extents = Vector2( 271.75, 456 )
+
+[sub_resource type="Animation" id=86]
+resource_name = "New Anim"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flying_Platform_4:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1.1487, 1 ),
+"update": 0,
+"values": [ Vector2( 2584, -42 ), Vector2( 2949, -42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flying_Platform_5:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3529, 70 ), Vector2( 3893, 70 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flying_Platform_6:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3893, 18 ), Vector2( 3529, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flying_Platform_7:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3893, -12 ), Vector2( 4197, -12 ) ]
+}
+
+[sub_resource type="Animation" id=87]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flying_Platform_4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2666, -42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flying_Platform_5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3529, 70 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flying_Platform_6:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3993, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flying_Platform_7:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3893, -12 ) ]
+}
+
+[node name="Level_Base" instance=ExtResource( 3 )]
+__meta__ = {
+"_edit_horizontal_guides_": [ 241.0 ]
+}
+level_name = "AirForce"
+
+[node name="Stage_music_setter" parent="." index="0"]
+stage_music_path = "res://sound_assests/music/stage/air_force.ogg"
+volume = 4.0
+
+[node name="Ent_player_checkpoint" parent="CheckPoints" index="0" instance=ExtResource( 4 )]
+position = Vector2( 115, 121 )
+start_point = true
+Camera_Bounds_Path = NodePath("../../CameraBounds/Camera_Bounds")
+invisible = true
+
+[node name="Camera_Bounds" parent="CameraBounds" index="0" instance=ExtResource( 2 )]
+update_speed = 5
+
+[node name="Activation_zone" parent="CameraBounds/Camera_Bounds" index="0"]
+position = Vector2( 419, 128 )
+shape = SubResource( 39 )
+
+[node name="ReferenceRect" parent="CameraBounds/Camera_Bounds" index="1"]
+margin_right = 1092.0
+margin_bottom = 240.0
+
+[node name="Camera_Bounds2" parent="CameraBounds" index="1" instance=ExtResource( 2 )]
+update_speed = 5
+
+[node name="Activation_zone" parent="CameraBounds/Camera_Bounds2" index="0"]
+position = Vector2( 1483.75, 41.75 )
+shape = SubResource( 45 )
+
+[node name="ReferenceRect" parent="CameraBounds/Camera_Bounds2" index="1"]
+margin_left = 285.0
+margin_top = -295.0
+margin_right = 4912.0
+margin_bottom = 241.0
+
+[node name="Ent_Enemy_Spawner_Sphere_Copter" parent="EnemySpawners" index="0" instance=ExtResource( 11 )]
+position = Vector2( 537, 101 )
+Enemy = ExtResource( 10 )
+
+[node name="Ent_Enemy_Spawner_Sphere_Copter2" parent="EnemySpawners" index="1" instance=ExtResource( 11 )]
+position = Vector2( 2525, 133 )
+Enemy = ExtResource( 10 )
+
+[node name="Ent_Enemy_Spawner_Sphere_Copter3" parent="EnemySpawners" index="2" instance=ExtResource( 11 )]
+position = Vector2( 4425, -33 )
+Enemy = ExtResource( 10 )
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb2" parent="EnemySpawners" index="3" instance=ExtResource( 11 )]
+position = Vector2( 870, 196 )
+Enemy = ExtResource( 15 )
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb" parent="EnemySpawners" index="4" instance=ExtResource( 11 )]
+position = Vector2( 1384, 63 )
+Enemy = ExtResource( 15 )
+varient = 1
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb4" parent="EnemySpawners" index="5" instance=ExtResource( 11 )]
+position = Vector2( 1960, 158 )
+Enemy = ExtResource( 15 )
+varient = 1
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb3" parent="EnemySpawners" index="6" instance=ExtResource( 11 )]
+position = Vector2( 1537, 139 )
+Enemy = ExtResource( 15 )
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb5" parent="EnemySpawners" index="7" instance=ExtResource( 11 )]
+position = Vector2( 2525, -45 )
+Enemy = ExtResource( 15 )
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb6" parent="EnemySpawners" index="8" instance=ExtResource( 11 )]
+position = Vector2( 2837, -69 )
+Enemy = ExtResource( 15 )
+varient = 1
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb7" parent="EnemySpawners" index="9" instance=ExtResource( 11 )]
+position = Vector2( 4446, 69 )
+Enemy = ExtResource( 15 )
+
+[node name="Ent_Enemy_Spawner_Cross_Bomb8" parent="EnemySpawners" index="10" instance=ExtResource( 11 )]
+position = Vector2( 4556, 69 )
+Enemy = ExtResource( 15 )
+
+[node name="Ent_Enemy_Spawner_Giga_Death" parent="EnemySpawners" index="11" instance=ExtResource( 11 )]
+position = Vector2( 1806, 169 )
+Enemy = ExtResource( 21 )
+
+[node name="Ent_Enemy_Spawner_Giga_Death2" parent="EnemySpawners" index="12" instance=ExtResource( 11 )]
+position = Vector2( 3126, 159 )
+Enemy = ExtResource( 21 )
+
+[node name="Ent_Enemy_Spawner_Diver" parent="EnemySpawners" index="13" instance=ExtResource( 11 )]
+position = Vector2( 1717, -89 )
+Enemy = ExtResource( 19 )
+
+[node name="Ent_Enemy_Spawner_Diver2" parent="EnemySpawners" index="14" instance=ExtResource( 11 )]
+position = Vector2( 1802, -80 )
+Enemy = ExtResource( 19 )
+
+[node name="Ent_Enemy_Spawner_Diver3" parent="EnemySpawners" index="15" instance=ExtResource( 11 )]
+position = Vector2( 1764, -112 )
+Enemy = ExtResource( 19 )
+
+[node name="Node2D2" type="Node2D" parent="." index="10"]
+position = Vector2( 38, -15 )
+z_index = 7
+
+[node name="Sky_Layer_4" type="TextureRect" parent="Node2D2" index="0"]
+pause_mode = 1
+modulate = Color( 2, 2, 2, 0.223529 )
+material = SubResource( 9 )
+margin_left = -44.0
+margin_top = -611.0
+margin_right = 5824.0
+margin_bottom = 242.0
+texture = ExtResource( 9 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="Sky_Layer_5" type="TextureRect" parent="Node2D2" index="1"]
+pause_mode = 1
+modulate = Color( 1, 1, 1, 0.67451 )
+material = SubResource( 37 )
+margin_left = -150.0
+margin_top = 44.0
+margin_right = 5587.0
+margin_bottom = 284.0
+texture = ExtResource( 8 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="ParallaxBackground" parent="." index="11"]
+pause_mode = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+pause_mode = 1
+motion_scale = Vector2( 0.2, 0 )
+motion_offset = Vector2( 0, 120 )
+motion_mirroring = Vector2( 320, 240 )
+
+[node name="Sky_Layer_4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" index="0"]
+pause_mode = 1
+material = SubResource( 4 )
+margin_right = 1000.0
+margin_bottom = 240.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+pause_mode = 1
+motion_scale = Vector2( 0.4, 0.02 )
+motion_offset = Vector2( 0, -110 )
+motion_mirroring = Vector2( 320, 0 )
+
+[node name="Sky_Layer_4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2" index="0"]
+pause_mode = 1
+material = SubResource( 6 )
+margin_top = -10.0
+margin_right = 1000.0
+margin_bottom = 230.0
+texture = ExtResource( 6 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+pause_mode = 1
+motion_scale = Vector2( 0.6, 0.1 )
+motion_offset = Vector2( 0, -99 )
+motion_mirroring = Vector2( 320, 0 )
+
+[node name="Sky_Layer_4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+pause_mode = 1
+material = SubResource( 8 )
+margin_top = -5.0
+margin_right = 1000.0
+margin_bottom = 235.0
+texture = ExtResource( 7 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
+pause_mode = 1
+motion_scale = Vector2( 0.4, 0.5 )
+motion_offset = Vector2( 0, 130 )
+motion_mirroring = Vector2( 320, 0 )
+
+[node name="Sky_Layer_4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4" index="0"]
+pause_mode = 1
+material = SubResource( 37 )
+margin_top = -192.0
+margin_right = 1000.0
+margin_bottom = 48.0
+texture = ExtResource( 8 )
+stretch_mode = 2
+script = ExtResource( 17 )
+
+[node name="Planes_Layer_2" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
+modulate = Color( 0.32549, 0.32549, 0.32549, 1 )
+motion_scale = Vector2( 0.33, 0.2 )
+motion_offset = Vector2( 0, -80 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="gobj_moving_platform_plane4" parent="ParallaxBackground/Planes_Layer_2" index="0" instance=ExtResource( 1 )]
+position = Vector2( 198, 10 )
+scale = Vector2( 0.2, 0.2 )
+collision_layer = 0
+motion/sync_to_physics = false
+
+[node name="gobj_moving_platform_plane5" parent="ParallaxBackground/Planes_Layer_2" index="1" instance=ExtResource( 1 )]
+position = Vector2( -15, 58 )
+scale = Vector2( 0.2, 0.2 )
+collision_layer = 0
+motion/sync_to_physics = false
+
+[node name="gobj_moving_platform_plane6" parent="ParallaxBackground/Planes_Layer_2" index="2" instance=ExtResource( 1 )]
+position = Vector2( 416, 63 )
+scale = Vector2( 0.2, 0.2 )
+collision_layer = 0
+motion/sync_to_physics = false
+
+[node name="Planes_Layer_1" type="ParallaxLayer" parent="ParallaxBackground" index="5"]
+modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
+motion_scale = Vector2( 0.5, 0.3 )
+motion_offset = Vector2( 0, -50 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="gobj_moving_platform_plane3" parent="ParallaxBackground/Planes_Layer_1" index="0" instance=ExtResource( 1 )]
+position = Vector2( 440, 58 )
+scale = Vector2( 0.4, 0.4 )
+collision_layer = 0
+motion/sync_to_physics = false
+
+[node name="gobj_moving_platform_plane4" parent="ParallaxBackground/Planes_Layer_1" index="1" instance=ExtResource( 1 )]
+position = Vector2( 132, 98 )
+scale = Vector2( 0.4, 0.4 )
+collision_layer = 0
+motion/sync_to_physics = false
+
+[node name="gobj_moving_platform_plane" parent="Game_Objects" index="0" instance=ExtResource( 1 )]
+position = Vector2( 103, 206 )
+z_index = -1
+
+[node name="gobj_moving_platform_plane2" parent="Game_Objects" index="1" instance=ExtResource( 1 )]
+position = Vector2( 405, 183 )
+z_index = -1
+
+[node name="gobj_moving_platform_plane3" parent="Game_Objects" index="2" instance=ExtResource( 1 )]
+position = Vector2( 738, 224 )
+z_index = -1
+
+[node name="gobj_moving_platform_plane4" parent="Game_Objects" index="3" instance=ExtResource( 1 )]
+position = Vector2( 992, 224 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane5" parent="Game_Objects" index="4" instance=ExtResource( 1 )]
+position = Vector2( 1250, 127 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane6" parent="Game_Objects" index="5" instance=ExtResource( 1 )]
+position = Vector2( 1007, -74 )
+z_index = -2
+
+[node name="Item_Missing_Reploid" parent="Game_Objects/gobj_moving_platform_plane6" index="6" instance=ExtResource( 16 )]
+position = Vector2( -54, -42 )
+reploid_id = 8
+
+[node name="gobj_moving_platform_plane7" parent="Game_Objects" index="6" instance=ExtResource( 1 )]
+position = Vector2( 1511, 4 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane9" parent="Game_Objects" index="7" instance=ExtResource( 1 )]
+position = Vector2( 1849, 242 )
+z_index = -2
+
+[node name="Item_Missing_Reploid3" parent="Game_Objects/gobj_moving_platform_plane9" index="6" instance=ExtResource( 16 )]
+self_modulate = Color( 0.956863, 1, 0.203922, 1 )
+position = Vector2( 40, -44 )
+reploid_id = 4
+
+[node name="gobj_moving_platform_plane10" parent="Game_Objects" index="8" instance=ExtResource( 1 )]
+position = Vector2( 1860, -34 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane11" parent="Game_Objects" index="9" instance=ExtResource( 1 )]
+position = Vector2( 2174, 105 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane12" parent="Game_Objects" index="10" instance=ExtResource( 1 )]
+position = Vector2( 2401, 218 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane13" parent="Game_Objects" index="11" instance=ExtResource( 1 )]
+position = Vector2( 2737, 198 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane14" parent="Game_Objects" index="12" instance=ExtResource( 1 )]
+position = Vector2( 3077, 218 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane15" parent="Game_Objects" index="13" instance=ExtResource( 1 )]
+position = Vector2( 3350, 137 )
+z_index = -2
+
+[node name="gobj_moving_platform_plane16" parent="Game_Objects" index="14" instance=ExtResource( 1 )]
+position = Vector2( 4708, 152 )
+z_index = -2
+
+[node name="Hitbox" parent="Game_Objects" index="15" instance=ExtResource( 13 )]
+collision_mask = 2
+monitoring = false
+damage = 100
+ignore_iframes = true
+activate_iframes = false
+
+[node name="CollisionShape2D" parent="Game_Objects/Hitbox" index="0"]
+position = Vector2( 1843, 307 )
+shape = SubResource( 35 )
+
+[node name="Hitbox2" parent="Game_Objects" index="16" instance=ExtResource( 13 )]
+position = Vector2( -126, -282 )
+collision_mask = 2
+monitoring = false
+damage = 100
+ignore_iframes = true
+activate_iframes = false
+
+[node name="CollisionShape2D" parent="Game_Objects/Hitbox2" index="0"]
+position = Vector2( -188.75, 218 )
+shape = SubResource( 85 )
+
+[node name="Obj_flying_platform" parent="Game_Objects" index="17" instance=ExtResource( 23 )]
+position = Vector2( 1452, 165 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Obj_flying_platform2" parent="Game_Objects" index="18" instance=ExtResource( 23 )]
+position = Vector2( 1641, 225 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Obj_flying_platform3" parent="Game_Objects" index="19" instance=ExtResource( 23 )]
+position = Vector2( 2429, -14 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Obj_flying_platform4" parent="Game_Objects" index="20" instance=ExtResource( 23 )]
+position = Vector2( 4350, 33 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Obj_flying_platform6" parent="Game_Objects" index="21" instance=ExtResource( 23 )]
+position = Vector2( 4499, 83 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Flying_Platform_4" type="Node2D" parent="Game_Objects" index="22"]
+position = Vector2( 2666, -42 )
+
+[node name="Obj_flying_platform4" parent="Game_Objects/Flying_Platform_4" index="0" instance=ExtResource( 23 )]
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Flying_Platform_5" type="Node2D" parent="Game_Objects" index="23"]
+position = Vector2( 3529, 70 )
+
+[node name="Obj_flying_platform4" parent="Game_Objects/Flying_Platform_5" index="0" instance=ExtResource( 23 )]
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Flying_Platform_6" type="Node2D" parent="Game_Objects" index="24"]
+position = Vector2( 3993, 18 )
+
+[node name="Obj_flying_platform4" parent="Game_Objects/Flying_Platform_6" index="0" instance=ExtResource( 23 )]
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Flying_Platform_7" type="Node2D" parent="Game_Objects" index="25"]
+position = Vector2( 3893, -12 )
+
+[node name="Obj_flying_platform4" parent="Game_Objects/Flying_Platform_7" index="0" instance=ExtResource( 23 )]
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Flying_Platform_8" type="Node2D" parent="Game_Objects" index="26"]
+position = Vector2( 4253, 150 )
+
+[node name="Obj_flying_platform4" parent="Game_Objects/Flying_Platform_8" index="0" instance=ExtResource( 23 )]
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Obj_flying_platform5" parent="Game_Objects" index="27" instance=ExtResource( 23 )]
+position = Vector2( 3070, -101 )
+moving_platform_apply_velocity_on_leave = 2
+
+[node name="Item_Missing_Reploid" parent="Game_Objects/Obj_flying_platform5" index="3" instance=ExtResource( 16 )]
+position = Vector2( 4, -18 )
+reploid_id = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game_Objects" index="28"]
+pause_mode = 1
+autoplay = "New Anim"
+playback_process_mode = 0
+"anims/New Anim" = SubResource( 86 )
+anims/RESET = SubResource( 87 )
+
+[node name="2d_sound_emitters" type="Node" parent="." index="13"]
+
+[editable path="CameraBounds/Camera_Bounds"]
+[editable path="CameraBounds/Camera_Bounds2"]
+[editable path="Game_Objects/Hitbox"]
+[editable path="Game_Objects/Hitbox2"]

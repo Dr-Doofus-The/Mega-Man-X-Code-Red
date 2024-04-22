@@ -1,0 +1,31 @@
+{    
+    "BUSTER_1": "1",
+    "BUSTER_2": "2",
+    "BUSTER_3": "3",
+    "BUSTER_4": "3",
+    "SHOTGUN_ICE": "1",
+    "SHOTGUN_ICE_CHARGED": "2",
+    "ELECTIC_SPARK": "1",
+    "ELECTIC_SPARK_CHARGED": "2",
+    "ROLLING_SHIELD": "1",
+    "ROLLING_SHIELD_CHARGED": "2",
+    "HOMING_TORPEDO": "1",
+    "HOMING_TORPEDO_CHARGED": "2",
+    "BOOMERANG_CUTTER": "1",
+    "BOOMERANG_CUTTER_CHARGED": "2",
+    "CHAMELEON_STING": "1",
+    "CHAMELEON_STING_CHARGED": "2",
+    "STORM_TORNADO": "1",
+    "STORM_TORNADO_CHARGED": "2",
+    "FIRE_WAVE": "1",
+    "FIRE_WAVE_CHARGED": "2",
+    "HADOUKEN": "32",
+    "AXL_BULLET": "1",
+
+    "SABER_1": "1",
+    "SABER_2": "1",
+    "SABER_3": "2",
+    "SABER_AIR": "2",
+    "SABER_UP": "2"
+
+}

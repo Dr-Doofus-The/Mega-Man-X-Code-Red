@@ -1,0 +1,770 @@
+[
+  {
+    "Stage": "AirForce",
+    "ReploidName": "DEREK",
+    "Color": "RED",
+    "ID": 0
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "NEIL",
+    "Color": "RED",
+    "ID": 1
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "NIGEL",
+    "Color": "RED",
+    "ID": 2
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "RAY",
+    "Color": "RED",
+    "ID": 3
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "HAROLD",
+    "Color": "RED",
+    "ID": 4
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "JEFF",
+    "Color": "BLUE",
+    "ID": 5
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "HERBIE",
+    "Color": "BLUE",
+    "ID": 6
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "KELLY",
+    "Color": "BLUE",
+    "ID": 7
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "BARRY",
+    "Color": "BLUE",
+    "ID": 8
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "YAMAGUCHI",
+    "Color": "BLUE",
+    "ID": 9
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "MO",
+    "Color": "YELLOW",
+    "ID": 10
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "BERT",
+    "Color": "YELLOW",
+    "ID": 11
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "MITT",
+    "Color": "YELLOW",
+    "ID": 12
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "DAMON",
+    "Color": "YELLOW",
+    "ID": 13
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "SILVER",
+    "Color": "YELLOW",
+    "ID": 14
+  },
+  {
+    "Stage": "AirForce",
+    "ReploidName": "KIM",
+    "Color": "BLUE",
+    "ID": 15
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "OTIS",
+    "Color": "",
+    "ID": 16
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "GRAHAM",
+    "Color": "",
+    "ID": 17
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "DAN",
+    "Color": "",
+    "ID": 18
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "FAY",
+    "Color": "",
+    "ID": 19
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "KEN",
+    "Color": "",
+    "ID": 20
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "ALAN",
+    "Color": "",
+    "ID": 21
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "WALTER",
+    "Color": "",
+    "ID": 22
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "MICHAEL",
+    "Color": "",
+    "ID": 23
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "JULES",
+    "Color": "",
+    "ID": 24
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "CARLOS",
+    "Color": "",
+    "ID": 25
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "OLIVER",
+    "Color": "",
+    "ID": 26
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "LEE",
+    "Color": "",
+    "ID": 27
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "ERIC",
+    "Color": "",
+    "ID": 28
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "KEITH",
+    "Color": "",
+    "ID": 29
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "DUANE",
+    "Color": "",
+    "ID": 30
+  },
+  {
+    "Stage": "Tunnel",
+    "ReploidName": "GORDON",
+    "Color": "",
+    "ID": 31
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "DEAN",
+    "Color": "",
+    "ID": 32
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "VINNIE",
+    "Color": "",
+    "ID": 33
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "DOLPH",
+    "Color": "",
+    "ID": 34
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "BLACK",
+    "Color": "",
+    "ID": 35
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "RUDI",
+    "Color": "",
+    "ID": 36
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "ROCK",
+    "Color": "",
+    "ID": 37
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "MARIO",
+    "Color": "",
+    "ID": 38
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "JOEY",
+    "Color": "",
+    "ID": 39
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "SID",
+    "Color": "",
+    "ID": 40
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "SCOTT",
+    "Color": "",
+    "ID": 41
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "ROB",
+    "Color": "",
+    "ID": 42
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "SAM",
+    "Color": "",
+    "ID": 43
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "ELTON",
+    "Color": "",
+    "ID": 44
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "KATO",
+    "Color": "",
+    "ID": 45
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "LUKE",
+    "Color": "",
+    "ID": 46
+  },
+  {
+    "Stage": "Circuit",
+    "ReploidName": "TANAKA",
+    "Color": "",
+    "ID": 47
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "RITA",
+    "Color": "",
+    "ID": 48
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "TRACY",
+    "Color": "",
+    "ID": 49
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "LILY",
+    "Color": "",
+    "ID": 50
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "BETTY",
+    "Color": "",
+    "ID": 51
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "CATE",
+    "Color": "",
+    "ID": 52
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "ALISON",
+    "Color": "",
+    "ID": 53
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "JULIA",
+    "Color": "",
+    "ID": 54
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "LUCIE",
+    "Color": "",
+    "ID": 55
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "BERINDA",
+    "Color": "",
+    "ID": 56
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "CINDY",
+    "Color": "",
+    "ID": 57
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "EMI",
+    "Color": "",
+    "ID": 58
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "HOLY",
+    "Color": "",
+    "ID": 59
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "JUNE",
+    "Color": "",
+    "ID": 60
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "KEIKO",
+    "Color": "",
+    "ID": 61
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "MARIAN",
+    "Color": "",
+    "ID": 62
+  },
+  {
+    "Stage": "Tower",
+    "ReploidName": "JANIS",
+    "Color": "",
+    "ID": 63
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "MARKUS",
+    "Color": "",
+    "ID": 64
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "IAN",
+    "Color": "",
+    "ID": 65
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "ANTHONY",
+    "Color": "",
+    "ID": 66
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "ROBERT",
+    "Color": "",
+    "ID": 67
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "JOE",
+    "Color": "",
+    "ID": 68
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "PETER",
+    "Color": "",
+    "ID": 69
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "CHRIS",
+    "Color": "",
+    "ID": 70
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "TODD",
+    "Color": "",
+    "ID": 71
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "RICK",
+    "Color": "",
+    "ID": 72
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "PHIL",
+    "Color": "",
+    "ID": 73
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "MAURO",
+    "Color": "",
+    "ID": 74
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "BOB",
+    "Color": "",
+    "ID": 75
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "ANDY",
+    "Color": "",
+    "ID": 76
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "HENLY",
+    "Color": "",
+    "ID": 77
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "BILL",
+    "Color": "",
+    "ID": 78
+  },
+  {
+    "Stage": "Battleship",
+    "ReploidName": "FRANK",
+    "Color": "",
+    "ID": 79
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "ALEX",
+    "Color": "",
+    "ID": 80
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "BEN",
+    "Color": "",
+    "ID": 81
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "CHARLY",
+    "Color": "",
+    "ID": 82
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "DAVE",
+    "Color": "",
+    "ID": 83
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "FRED",
+    "Color": "",
+    "ID": 84
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "LUISE",
+    "Color": "",
+    "ID": 85
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "MICK",
+    "Color": "",
+    "ID": 86
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "JACK",
+    "Color": "",
+    "ID": 87
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "NICK",
+    "Color": "",
+    "ID": 88
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "HUEY",
+    "Color": "",
+    "ID": 89
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "SIMON",
+    "Color": "",
+    "ID": 90
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "ROGER",
+    "Color": "",
+    "ID": 91
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "ISAAC",
+    "Color": "",
+    "ID": 92
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "EDIE",
+    "Color": "",
+    "ID": 93
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "KEVIN",
+    "Color": "",
+    "ID": 94
+  },
+  {
+    "Stage": "Forest",
+    "ReploidName": "TOM",
+    "Color": "",
+    "ID": 95
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "RIN",
+    "Color": "",
+    "ID": 96
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "DANIEL",
+    "Color": "",
+    "ID": 97
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "SU",
+    "Color": "",
+    "ID": 98
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "ROSETTA",
+    "Color": "",
+    "ID": 99
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "MARRY",
+    "Color": "",
+    "ID": 100
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "JELLY",
+    "Color": "",
+    "ID": 101
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "MARC",
+    "Color": "",
+    "ID": 102
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "DOUG",
+    "Color": "",
+    "ID": 103
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "CLIFF",
+    "Color": "",
+    "ID": 104
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "TED",
+    "Color": "",
+    "ID": 105
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "RICHIE",
+    "Color": "",
+    "ID": 106
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "COLIN",
+    "Color": "",
+    "ID": 107
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "DON",
+    "Color": "",
+    "ID": 108
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "BRIAN",
+    "Color": "",
+    "ID": 109
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "MALIBE",
+    "Color": "",
+    "ID": 110
+  },
+  {
+    "Stage": "Cyberfield",
+    "ReploidName": "HIDE",
+    "Color": "",
+    "ID": 111
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "ROVIN",
+    "Color": "",
+    "ID": 112
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "ROY",
+    "Color": "",
+    "ID": 113
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "TONY",
+    "Color": "",
+    "ID": 114
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "B.J.",
+    "Color": "",
+    "ID": 115
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "TIM",
+    "Color": "",
+    "ID": 116
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "BRUCE",
+    "Color": "",
+    "ID": 117
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "LEON",
+    "Color": "",
+    "ID": 118
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "STEVE",
+    "Color": "",
+    "ID": 119
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "JIM",
+    "Color": "",
+    "ID": 120
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "ALAN",
+    "Color": "",
+    "ID": 121
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "CHUCK",
+    "Color": "",
+    "ID": 122
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "PAUL",
+    "Color": "",
+    "ID": 123
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "MATTHEW",
+    "Color": "",
+    "ID": 124
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "GUY",
+    "Color": "",
+    "ID": 125
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "TREVOR",
+    "Color": "",
+    "ID": 126
+  },
+  {
+    "Stage": "Lava",
+    "ReploidName": "GARY",
+    "Color": "",
+    "ID": 127
+  }
+]

@@ -1,0 +1,162 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://sprites/Pickups/Collectables/Missing_Reploids/spr_item_missing_reploid_air_force_palette.png" type="Texture" id=1]
+[ext_resource path="res://sprites/Pickups/Collectables/Missing_Reploids/spr_item_missing_reploid_air_force.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Item/Item_Missing_Reploid.gd" type="Script" id=3]
+[ext_resource path="res://sprites/Pickups/Collectables/Missing_Reploids/spr_item_missing_reploid_teleport.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Pickups/Collectables/Missing_Reploids/spr_item_missing_reploid_sign.png" type="Texture" id=5]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+uniform vec2 frame_count;
+uniform vec2 frame_coordinate;
+
+
+
+void fragment() {
+	vec4 rgba = texture(TEXTURE, UV);
+	vec4 final_color = texture(palette, vec2(rgba.r, rgba.g)/(frame_count + vec2(1.0,1.0)) + frame_coordinate);
+	final_color.a = rgba.a;
+	
+	COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/frame_count = Vector2( 4, 0 )
+shader_param/frame_coordinate = Vector2( 0.001, 0 )
+shader_param/palette = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 45, 0, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 90, 0, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 43, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 45, 43, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 90, 43, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 135, 43, 45, 43 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 60, 0, 60, 130 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 120, 0, 60, 130 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 60, 130 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ) ],
+"loop": true,
+"name": "AirForce_help",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "AirForce_thanks",
+"speed": 14.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 24 ) ],
+"loop": false,
+"name": "teleport",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 19, 21 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 47, 14 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 47, 0, 47, 14 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 94, 0, 47, 14 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 141, 0, 47, 14 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 188, 0, 47, 14 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 235, 0, 47, 14 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 12 ) ],
+"loop": true,
+"name": "help",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "thanks",
+"speed": 8.0
+} ]
+
+[node name="Item_Missing_Reploid" type="Area2D"]
+pause_mode = 1
+self_modulate = Color( 0.203922, 0.439216, 1, 1 )
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 2 )
+frames = SubResource( 9 )
+animation = "AirForce_thanks"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 10 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -34 )
+frames = SubResource( 17 )
+animation = "help"
+playing = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -2.5, -10 )
+scale = Vector2( 2.35, 3.2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Item_Missing_Reploid_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

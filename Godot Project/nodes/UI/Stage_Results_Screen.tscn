@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/UI/Stage_Results_Screen.gd" type="Script" id=1]
+[ext_resource path="res://fonts/7x10_font.tres" type="BitmapFont" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Results_Screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1600.0
+margin_bottom = -840.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 160.0 ]
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 8.0
+margin_bottom = 36.0
+
+[node name="Hostage_screen" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_styles/tab_fg = SubResource( 1 )
+custom_styles/button = SubResource( 1 )
+custom_styles/tab_disabled = SubResource( 1 )
+custom_styles/tab_bg = SubResource( 1 )
+custom_styles/button_pressed = SubResource( 1 )
+scrolling_enabled = false
+
+[node name="Text" type="RichTextLabel" parent="TabContainer/Hostage_screen"]
+margin_left = 11.0
+margin_top = -21.0
+margin_right = 302.0
+margin_bottom = 197.0
+custom_fonts/normal_font = ExtResource( 2 )
+text = "REPLOIDS RESCUED:"
+
+[node name="Hostage_List_Column_1" type="Label" parent="TabContainer/Hostage_screen"]
+visible = false
+margin_left = 11.0
+margin_top = 12.0
+margin_right = 144.0
+margin_bottom = 180.0
+custom_constants/line_spacing = 8
+custom_fonts/font = ExtResource( 2 )
+uppercase = true
+max_lines_visible = 0
+
+[node name="Hostage_List_Column_2" type="Label" parent="TabContainer/Hostage_screen"]
+margin_left = 171.0
+margin_top = -4.0
+margin_right = 304.0
+margin_bottom = 197.0
+custom_constants/line_spacing = 10
+custom_fonts/font = ExtResource( 2 )
+uppercase = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+margin_right = 320.0
+margin_bottom = 240.0

@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_s_tornado_normal.gd" type="Script" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sound_assests/player/X/snd_player_x_buster_hit.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 30 )
+
+[node name="proj_storm_tornado" instance=ExtResource( 2 )]
+collision_mask = 64
+script = ExtResource( 1 )
+projectile_speed = 7
+stay = true
+projectile_impact_sound = ExtResource( 3 )
+ProjClass = "Proj_Bullet"
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+visible = false
+scale = Vector2( 15.24, 2.2 )
+
+[node name="Hitbox" parent="." index="4"]
+collision_layer = 16
+collision_mask = 4
+damage = 2
+linger_frames = 2
+knockback_power = 0.1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite_holder" type="Node2D" parent="." index="5"]
+
+[node name="Timer" type="Timer" parent="." index="6"]
+process_mode = 0
+wait_time = 0.05
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="7"]
+enabled = true
+cast_to = Vector2( 0, 30 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

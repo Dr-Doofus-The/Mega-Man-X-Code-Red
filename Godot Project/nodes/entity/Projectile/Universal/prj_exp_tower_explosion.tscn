@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sprites/Particles/exp/spr_particle_exp_tower.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 20, 65 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 20, 0, 20, 65 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 40, 0, 20, 65 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 60, 0, 20, 65 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), null ],
+"loop": false,
+"name": "default",
+"speed": 18.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7, 31.5 )
+
+[node name="Area2D" instance=ExtResource( 2 )]
+projectile_speed = 0
+lifetime = 0.27
+stay = true
+hitbox_layer = 1
+
+[node name="AnimatedSprite" parent="." index="1"]
+position = Vector2( 0, -28 )
+frames = SubResource( 5 )
+frame = 1
+playing = false
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+position = Vector2( 0, -28.5 )
+scale = Vector2( 0.9, 3.25 )
+
+[node name="Hitbox" parent="." index="3"]
+damage = 6
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -27.5 )
+shape = SubResource( 6 )
+
+[editable path="Hitbox"]

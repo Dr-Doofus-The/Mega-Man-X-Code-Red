@@ -1,0 +1,302 @@
+[gd_scene load_steps=8 format=2]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+render_mode blend_mix,unshaded;
+
+uniform float brightness : hint_range(-1, 1) = 0;
+uniform float contrast : hint_range(0, 3) = 1.0;
+uniform float saturation : hint_range(0, 3) = 1.0;
+
+uniform float redVal : hint_range(0, 1) = 1.0;
+uniform float greenVal : hint_range(0, 1) = 1.0;
+uniform float blueVal : hint_range(0, 1) = 1.0;
+
+uniform vec4 tint_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tint_effect_factor : hint_range(0, 1) = 0.0;
+//---------------------------------------------
+//CONTRAST
+//---------------------------------------------
+mat4 contrastMatrix( float _contrast ){
+	float t = ( 1.0 - _contrast ) / 2.0;
+    return mat4( 
+		vec4(_contrast, 0, 0, 0),
+		vec4(0, _contrast, 0, 0),
+		vec4(0, 0, _contrast, 0),
+		vec4(t, t, t, 1));
+}
+//---------------------------------------------
+//BRIGHTNESS
+//---------------------------------------------
+mat4 brightnessMatrix( float _brightness ){
+    return mat4( vec4(1, 0, 0, 0),
+                 vec4(0, 1, 0, 0),
+                 vec4(0, 0, 1, 0),
+                 vec4(_brightness, _brightness, _brightness, 1));
+}
+//---------------------------------------------
+//SATURATION
+//---------------------------------------------
+mat4 saturationMatrix( float _saturation ){
+    vec3 luminance = vec3( 0.3086, 0.6094, 0.0820 );
+    float oneMinusSat = 1.0 - _saturation;
+	
+    vec3 red = vec3( luminance.x * oneMinusSat );
+    red+= vec3(_saturation, 0, 0)*redVal;
+    vec3 green = vec3( luminance.y * oneMinusSat );
+    green += vec3( 0,_saturation, 0 )*greenVal;
+    vec3 blue = vec3( luminance.z * oneMinusSat );
+    blue += vec3( 0, 0,_saturation )*blueVal;
+	
+    return mat4(vec4(red, 0),vec4(green,0),vec4(blue,0),vec4(0, 0, 0, 1));
+}
+
+//---------------------------------------------
+//fragment
+//---------------------------------------------
+void fragment() {
+	vec4 c = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 c2 = c * tint_color;
+	COLOR = brightnessMatrix( brightness ) * contrastMatrix( contrast ) *saturationMatrix( saturation ) * mix(c, c2, tint_effect_factor);
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/brightness = 0.0
+shader_param/contrast = 1.0
+shader_param/saturation = 1.0
+shader_param/redVal = 1.0
+shader_param/greenVal = 1.0
+shader_param/blueVal = 1.0
+shader_param/tint_color = Color( 1, 1, 1, 1 )
+shader_param/tint_effect_factor = 0.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "Clear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen_overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bux:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Death_Transition"
+length = 3.35
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen_overlay:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3.1, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1e-05, 1e-05 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, -1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen_overlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bux:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.3, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("bux:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.1, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen_overlay:material:shader_param/tint_effect_factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen_overlay:material:shader_param/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Screen_overlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("bux:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("bux:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Transition_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen_overlay:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen_overlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Transition_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen_overlay:material:shader_param/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen_overlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[node name="Transition_Screen" type="CanvasLayer"]
+layer = 99
+
+[node name="Screen_overlay" type="ColorRect" parent="."]
+pause_mode = 2
+material = SubResource( 10 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -720.0
+margin_right = 720.0
+margin_bottom = 1080.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+autoplay = "Clear"
+method_call_mode = 1
+anims/Clear = SubResource( 12 )
+anims/Death_Transition = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+anims/Transition_in = SubResource( 11 )
+anims/Transition_out = SubResource( 8 )
+
+[node name="bux" type="ColorRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -720.0
+margin_right = 720.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 1 )

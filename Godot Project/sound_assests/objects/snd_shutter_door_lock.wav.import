@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_shutter_door_lock.wav-3a67da16d399ed27d002b107c5e91ad2.sample"
+
+[deps]
+
+source_file="res://sound_assests/objects/snd_shutter_door_lock.wav"
+dest_files=[ "res://.import/snd_shutter_door_lock.wav-3a67da16d399ed27d002b107c5e91ad2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,540 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://nodes/entity/Bosses/EntityBoss.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/Bosses/Slash_Beast/spr_boss_slash_beast_sheet.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Bosses/EntityBoss_Slash_Beast.gd" type="Script" id=3]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Shader" id=29]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=30]
+resource_local_to_scene = true
+shader = SubResource( 29 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.34552, 0.796875, 0.766275, 1 )
+shader_param/C2 = Color( 0.556863, 0.901961, 0.878431, 1 )
+shader_param/C3 = Color( 0.803922, 0.945098, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 23, 35 )
+
+[sub_resource type="Animation" id=45]
+resource_name = "Dying"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 37 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "Fall"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 1 ), Vector2( 4, 1 ) ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "Flash_Kick"
+length = 0.958333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.333333, 0.375, 0.416667, 0.458333, 0.541667, 0.625, 0.708333, 0.791667, 0.875, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 2 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 6, 2 ), Vector2( 0, 3 ), Vector2( 1, 3 ), Vector2( 2, 3 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 4, 3 ), Vector2( 5, 3 ), Vector2( 6, 3 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.333333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "flash_kick_standing"
+} ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "Flash_Kick_Air"
+length = 0.5
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0416667, 0.0833333, 0.125, 0.208333, 0.291667, 0.333333, 0.375, 0.416667, 0.458333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 2 ), Vector2( 6, 2 ), Vector2( 0, 3 ), Vector2( 1, 3 ), Vector2( 2, 3 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 4, 3 ), Vector2( 5, 3 ), Vector2( 6, 3 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Boss_sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.458333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ -90.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "Idle"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, 0 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "Intro_1"
+length = 2.08333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.666667 ),
+"transitions": PoolRealArray( 1.8025, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -240 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.666667, 0.75, 0.875, 0.916667, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ), Vector2( 1, 1 ), Vector2( 0, 1 ), Vector2( 4, 0 ), Vector2( 1, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.672 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "land_effect"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "Intro_2"
+length = 1.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.291667, 0.375, 0.416667, 0.458333, 0.5, 0.541667, 0.583333, 0.625, 0.666667, 0.708333, 0.75, 0.791667, 0.833333, 0.875, 0.916667, 0.958333, 1, 1.08333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 0 ), Vector2( 3, 0 ), Vector2( 2, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 5, 0 ), Vector2( 4, 0 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "Jump"
+length = 0.333333
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.208333, 0.291667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 4, 0 ), Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.21 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "Land"
+length = 0.166667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 1 ), Vector2( 4, 0 ) ]
+}
+
+[sub_resource type="Animation" id=35]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Boss_sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Boss_sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 37 ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "Stomp"
+length = 0.291667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Boss_sprite:frame_coords")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.125, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 1 ), Vector2( 5, 1 ), Vector2( 6, 1 ), Vector2( 0, 2 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0833333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stomp"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 26, 35 )
+
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 18, 26 )
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 10, 156.5 )
+
+[node name="EntityBoss_Slash_Beast" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+hp_max = 48
+UseDamageTable = true
+boss_music = "res://sound_assests/music/fight/boss_fight_crash.ogg"
+grounded = true
+spawn_offset = Vector2( 120, 0 )
+Damage_Chart_Path = "res://JSON/damage_chart/damage_chart_standard.json"
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 1 )
+material = SubResource( 30 )
+
+[node name="Boss_sprite" type="Sprite" parent="Sprite" index="0"]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 7
+vframes = 6
+frame = 37
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, 1 )
+shape = SubResource( 31 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Dying = SubResource( 45 )
+anims/Fall = SubResource( 36 )
+anims/Flash_Kick = SubResource( 43 )
+anims/Flash_Kick_Air = SubResource( 44 )
+anims/Idle = SubResource( 37 )
+anims/Intro_1 = SubResource( 33 )
+anims/Intro_2 = SubResource( 34 )
+anims/Jump = SubResource( 38 )
+anims/Land = SubResource( 39 )
+anims/RESET = SubResource( 35 )
+anims/Stomp = SubResource( 41 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 32 )
+
+[node name="Idle_Timer" parent="." index="5"]
+process_mode = 0
+wait_time = 0.2
+
+[node name="Hitbox" parent="." index="16" instance=ExtResource( 4 )]
+collision_mask = 2
+damage = 3
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 40 )
+
+[node name="Area2D" type="Area2D" parent="." index="17"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, 146.5 )
+shape = SubResource( 42 )
+
+[connection signal="boss_died" from="." to="." method="_on_EntityBoss_Slash_Beast_boss_died"]
+[connection signal="decide_attack" from="." to="." method="_on_EntityBoss_Slash_Beast_decide_attack"]
+[connection signal="start_fight" from="." to="." method="_on_EntityBoss_Slash_Beast_start_fight"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_beast_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

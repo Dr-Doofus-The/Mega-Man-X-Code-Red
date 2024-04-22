@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/central_highway_placeholder.ogg-4680e6acb79d5ce60dd8375170417f6c.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/stage/central_highway_placeholder.ogg"
+dest_files=[ "res://.import/central_highway_placeholder.ogg-4680e6acb79d5ce60dd8375170417f6c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=5.5

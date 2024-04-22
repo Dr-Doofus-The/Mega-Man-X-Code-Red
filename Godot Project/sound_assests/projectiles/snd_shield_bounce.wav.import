@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_shield_bounce.wav-e676ed52d353c4ae04487b0502aaf438.sample"
+
+[deps]
+
+source_file="res://sound_assests/projectiles/snd_shield_bounce.wav"
+dest_files=[ "res://.import/snd_shield_bounce.wav-e676ed52d353c4ae04487b0502aaf438.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

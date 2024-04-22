@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://nodes/GameObjects/Obj_zipline.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/enemies/jamminger/spr_ene_jamminger.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Game_objects/Obj_helicopter_hanger.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1, 8, 0, 0, 0, 0, -1, 8 )
+}
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 42, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 42, 42, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 84, 42, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 126, 42, 42, 42 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 19, 16 )
+
+[node name="obj_heli_hanger" type="KinematicBody2D"]
+pause_mode = 1
+physics_interpolation_mode = 2
+collision_layer = 0
+moving_platform_apply_velocity_on_leave = 2
+script = ExtResource( 3 )
+
+[node name="obj_zipline" parent="." instance=ExtResource( 1 )]
+physics_interpolation_mode = 2
+zipline_direction = 1
+movable = false
+
+[node name="Path2D" parent="obj_zipline" index="1"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" parent="obj_zipline/Path2D" index="0"]
+position = Vector2( 1, 8 )
+
+[node name="TileMap" parent="obj_zipline" index="2"]
+tile_data = PoolIntArray( 65535, 536870912, 2, 0, 0, 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+frame = 2
+playing = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4.76837e-07, 1.43051e-06 )
+scale = Vector2( 3.4, 3.3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
+shape = SubResource( 7 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+[editable path="obj_zipline"]

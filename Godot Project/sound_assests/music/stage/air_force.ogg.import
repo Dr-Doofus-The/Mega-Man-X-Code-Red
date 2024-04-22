@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/air_force.ogg-3a6e2ccd336b3c655d76082c331a792b.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/stage/air_force.ogg"
+dest_files=[ "res://.import/air_force.ogg-3a6e2ccd336b3c655d76082c331a792b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=1.089

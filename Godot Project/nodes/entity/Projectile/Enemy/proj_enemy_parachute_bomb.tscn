@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/projectile/Enemies/spr_prj_parachute_missle.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Projectile/Enemies/proj_enemy_parachute_bomb.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 6.5, 10 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 29, 0, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 58, 0, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 87, 0, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 40, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 29, 40, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 58, 40, 29, 40 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 87, 40, 29, 40 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "open",
+"speed": 18.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 10, 12 )
+
+[node name="Area2D" instance=ExtResource( 1 )]
+collision_mask = 17
+script = ExtResource( 3 )
+invulnerable = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 11 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 10 )
+offset = Vector2( 0, -10 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+rect = Rect2( -100, -100, 200, 200 )
+
+[node name="Hitbox" parent="." index="3"]
+collision_layer = 128
+collision_mask = 2
+damage = 3
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 12 )
+
+[node name="Tween" type="Tween" parent="." index="5"]
+
+[node name="Timer" type="Timer" parent="." index="6"]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="tree_exiting" from="." to="." method="_on_Area2D_tree_exiting"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

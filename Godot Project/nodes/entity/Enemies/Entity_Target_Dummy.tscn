@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sprites/enemies/spr_enemy_spherecopters.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/EntityBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Enemy/Entity_Target_Dummy.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 52, 46 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 14.5, 15 )
+
+[node name="EntityBase" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+hp_max = 1
+gravityenabled = false
+Die_On_0_HP = false
+
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 2 )
+
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 4.5, 5 )
+shape = SubResource( 3 )
+
+[editable path="Hurtbox"]

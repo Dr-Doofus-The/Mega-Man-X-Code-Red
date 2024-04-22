@@ -1,0 +1,185 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/enemies/bomb_been/spr_ene_bomb_been_wing.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemies/bomb_been/spr_ene_bomb_been_body.png" type="Texture" id=3]
+[ext_resource path="res://scripts/entity/Enemy/Ent_Enemy_Bomb_Been.gd" type="Script" id=4]
+[ext_resource path="res://nodes/particles/robot_part_explosion/par_bomb_been_parts_exp.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.662745, 1, 0.976471, 1 )
+shader_param/C2 = Color( 0.557217, 0.902832, 0.878719, 1 )
+shader_param/C3 = Color( 0.639216, 0.858824, 0.945098, 1 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 84, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 56, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 28, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 28, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 56, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 84, 0, 28, 44 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 112, 0, 28, 44 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": false,
+"name": "Close",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ) ],
+"loop": false,
+"name": "Open",
+"speed": 24.0
+} ]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 56, 50 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 56, 0, 56, 50 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 112, 0, 56, 50 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 40.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 10, 14.5 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 6, 13.5 )
+
+[sub_resource type="CapsuleShape2D" id=23]
+radius = 12.0
+height = 12.0
+
+[node name="Entity_Bomb_Been" instance=ExtResource( 1 )]
+collision_mask = 0
+script = ExtResource( 4 )
+hp_max = 4
+gravityenabled = false
+Movement_Speed = 60
+piece_explosion = ExtResource( 5 )
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource( 12 )
+frames = SubResource( 6 )
+animation = "Open"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Sprite" index="0"]
+use_parent_material = true
+position = Vector2( 9, -17 )
+frames = SubResource( 11 )
+frame = 2
+playing = true
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+position = Vector2( 0, 3.5 )
+scale = Vector2( 2.6, 2.95 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, 4.5 )
+shape = SubResource( 28 )
+
+[node name="Hurtbox" parent="." index="4"]
+collision_mask = 0
+monitorable = true
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, 3.5 )
+shape = SubResource( 22 )
+
+[node name="Hitbox" parent="." index="5"]
+collision_layer = 4
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 3 )
+shape = SubResource( 23 )
+
+[node name="Float_Anim_Timer" type="Timer" parent="." index="7"]
+wait_time = 0.06
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="8"]
+enabled = true
+cast_to = Vector2( -100, 300 )
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Bomb_Spawn_Point" type="Position2D" parent="." index="9"]
+position = Vector2( -6, 18 )
+
+[node name="Timer" type="Timer" parent="." index="10"]
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="timeout" from="Float_Anim_Timer" to="." method="_on_Float_Anim_Timer_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

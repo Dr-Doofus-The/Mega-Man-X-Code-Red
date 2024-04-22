@@ -1,0 +1,37 @@
+[gd_resource type="BitmapFont" load_steps=7 format=2]
+
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFont.gd" type="Script" id=1]
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFontSettings.gd" type="Script" id=2]
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFontMapping.gd" type="Script" id=3]
+[ext_resource path="res://sprites/Fonts/spr_font_weapon_counter.png" type="Texture" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+char_settings = {
+}
+kerning_pairs = [  ]
+gap = 1
+horizontal_align = 1
+vertical_align = 0
+monospace = false
+preview_color = Color( 0.12549, 0.141176, 0.192157, 1 )
+preview_chars = ""
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+source_texture = ExtResource( 4 )
+scaled_texture = ExtResource( 4 )
+rect_size = Vector2( 3, 5 )
+rect_gap = Vector2( 0, 0 )
+texture_offset = Vector2( 0, 0 )
+scale = 1
+interpolation = 0
+chars = "01234
+56789"
+
+[resource]
+textures = [ ExtResource( 4 ) ]
+chars = PoolIntArray( 32, 0, 0, 0, 0, 0, 0, 0, 1, 56, 0, 9, 5, 3, 5, 1, 0, 4, 48, 0, 0, 0, 3, 5, 1, 0, 4, 57, 0, 12, 5, 3, 5, 1, 0, 4, 49, 0, 4, 0, 2, 5, 1, 0, 3, 50, 0, 6, 0, 3, 5, 1, 0, 4, 51, 0, 9, 0, 3, 5, 1, 0, 4, 52, 0, 12, 0, 3, 5, 1, 0, 4, 53, 0, 0, 5, 3, 5, 1, 0, 4, 54, 0, 3, 5, 3, 5, 1, 0, 4, 55, 0, 6, 5, 3, 5, 1, 0, 4 )
+script = ExtResource( 1 )
+texture_mappings = [ SubResource( 2 ) ]
+font_settings = SubResource( 1 )

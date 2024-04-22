@@ -1,0 +1,214 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://nodes/entity/EntityBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/entity/Bosses/EntityBoss.gd" type="Script" id=2]
+[ext_resource path="res://shaders/entity/Flash_Shader_Simple.tres" type="Material" id=3]
+[ext_resource path="res://sound_assests/fx/sfx_explosion_final.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/Universal/$White.png" type="Texture" id=5]
+[ext_resource path="res://sound_assests/fx/sfx_boss_final_hit.wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Death_Explosion"
+length = 10.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.270588, 0.270588, 0.270588, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Explosion_vertical_flash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5.2, 5.55, 5.7, 6.35 ),
+"transitions": PoolRealArray( 13.4543, 0.307786, 0.329877, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 10, 2000 ), Vector2( 40, 2000 ), Vector2( 40, 2000 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/FLASH:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 5.45, 5.65, 7.65, 9.3 ),
+"transitions": PoolRealArray( 1, 2.73208, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Explosion_vertical_flash:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05, 5.15, 6.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6.05, 6.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 5.45 )
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Explosion_timer:one_shot")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 5.3, 5.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Flash"
+length = 0.1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/color_palette_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer:layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 100 ]
+}
+
+[node name="EntityBoss" instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 2 )
+boss_apperance_music = "res://sound_assests/music/fight/boss_apperance.ogg"
+boss_music = "res://sound_assests/music/fight/boss_fight_standard.ogg"
+grounded = false
+spawn_offset = Vector2( 0, 0 )
+Damage_Chart_Path = ""
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.895798, 0.895798, 0.895798, 1 )
+material = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+visible = false
+
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 4
+collision_mask = 0
+monitorable = true
+
+[node name="Idle_Timer" type="Timer" parent="." index="5"]
+pause_mode = 1
+one_shot = true
+
+[node name="Invulnerable_timer" type="Timer" parent="." index="6"]
+pause_mode = 1
+one_shot = true
+
+[node name="Attack_Timer" type="Timer" parent="." index="7"]
+pause_mode = 1
+one_shot = true
+
+[node name="Label" type="Label" parent="." index="8"]
+visible = false
+margin_left = -20.0
+margin_top = -34.0
+margin_right = 20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flash_anim" type="AnimationPlayer" parent="." index="9"]
+anims/Death_Explosion = SubResource( 6 )
+anims/Flash = SubResource( 1 )
+anims/RESET = SubResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="10"]
+layer = 100
+
+[node name="FLASH" type="TextureRect" parent="CanvasLayer" index="0"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 426.0
+margin_bottom = 240.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Explosion_vertical_flash" type="Sprite" parent="." index="11"]
+visible = false
+scale = Vector2( 0.0053715, 1.0743 )
+texture = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="12"]
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[node name="Explosion_timer" type="Timer" parent="." index="13"]
+wait_time = 0.3
+
+[node name="Final_hit" type="AudioStreamPlayer" parent="." index="14"]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[connection signal="Damage_taken" from="." to="." method="_on_EntityBoss_Damage_taken"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Idle_Timer" to="." method="_on_Idle_Timer_timeout"]
+[connection signal="timeout" from="Invulnerable_timer" to="." method="_on_Invulnerable_timer_timeout"]
+[connection signal="animation_finished" from="Flash_anim" to="." method="_on_Flash_anim_animation_finished"]
+[connection signal="timeout" from="Explosion_timer" to="." method="_on_Explosion_timer_timeout"]
+
+[editable path="Hurtbox"]

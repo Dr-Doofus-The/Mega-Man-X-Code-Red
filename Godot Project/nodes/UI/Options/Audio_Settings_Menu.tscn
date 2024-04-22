@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nodes/UI/Menu_Base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/UI/Options_Menu/Audio_Settings_Menu.gd" type="Script" id=2]
+[ext_resource path="res://nodes/UI/Options/Components/Option_Button_sideways_selection.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/UI/Options/Components/Option_Button_Progress.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.0869446, 0.125368, 0.300781, 1, 0.343414, 0.394301, 0.726563, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 426
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="Theme" id=4]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/decrement_pressed = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/icons/increment_pressed = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 3 )
+VScrollBar/styles/scroll_focus = null
+
+[node name="Audio_Settings_Menu" instance=ExtResource( 1 )]
+rect_pivot_offset = Vector2( 248, 75 )
+script = ExtResource( 2 )
+
+[node name="Menu" type="Control" parent="." index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Menu" index="0"]
+margin_top = 240.0
+margin_right = 240.0
+margin_bottom = 666.0
+rect_rotation = -90.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu" index="1"]
+anchor_left = 0.5
+anchor_top = 0.092
+anchor_right = 0.5
+anchor_bottom = 0.092
+margin_left = 146.5
+margin_top = 18.4
+margin_right = 239.5
+margin_bottom = 32.4
+text = "Game Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back_Button" type="Button" parent="Menu" index="2"]
+margin_left = 16.0
+margin_top = 209.0
+margin_right = 410.0
+margin_bottom = 229.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu" index="3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = 23.0
+margin_right = 402.0
+margin_bottom = 144.0
+theme = SubResource( 4 )
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/ScrollContainer" index="0"]
+margin_right = 394.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 394, 300 )
+custom_constants/separation = 5
+
+[node name="Master" parent="Menu/ScrollContainer/VBoxContainer" index="0" instance=ExtResource( 4 )]
+margin_bottom = 14.0
+
+[node name="SFX" parent="Menu/ScrollContainer/VBoxContainer" index="1" instance=ExtResource( 4 )]
+margin_top = 19.0
+margin_bottom = 33.0
+
+[node name="Music_option" parent="Menu/ScrollContainer/VBoxContainer" index="2" instance=ExtResource( 4 )]
+margin_top = 38.0
+margin_bottom = 52.0
+
+[node name="X_voice_options" parent="Menu/ScrollContainer/VBoxContainer" index="3" instance=ExtResource( 3 )]
+margin_top = 57.0
+margin_bottom = 71.0
+
+[node name="Charge_sfx" parent="Menu/ScrollContainer/VBoxContainer" index="4" instance=ExtResource( 3 )]
+margin_top = 76.0
+margin_bottom = 90.0
+
+[connection signal="pressed" from="Menu/Back_Button" to="." method="_on_Back_Button_pressed"]

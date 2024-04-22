@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_Weapon_Boomerang_Cutter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_blaze_burst.tscn" type="PackedScene" id=2]
+
+[node name="Spread_Blazer" instance=ExtResource( 1 )]
+normal_shot = ExtResource( 2 )
+max_on_screen = 1
+Ammo_capacity = 102
+color_palette_coordinate = Vector2( 0.669, 0.394 )
+fire_color_palette_coordinate = Vector2( 0.669, 0.394 )
+
+[node name="Timer" type="Timer" parent="." index="4"]
+pause_mode = 1
+process_mode = 0
+one_shot = true

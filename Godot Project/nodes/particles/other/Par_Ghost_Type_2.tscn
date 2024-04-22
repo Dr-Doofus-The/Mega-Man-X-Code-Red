@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/particle/Particle_ghost_type_2.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+
+	COLOR.rgb = hit_color.rgb;
+	COLOR.a = texture(TEXTURE,UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 2.5, 2.5, 2.5, 1 )
+shader_param/hit_strength = 1.0
+
+[node name="Sprite" type="AnimatedSprite"]
+pause_mode = 1
+modulate = Color( 15, 15, 15, 0.4 )
+material = SubResource( 2 )
+z_index = -1
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

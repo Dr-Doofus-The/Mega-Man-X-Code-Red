@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/entity/Player/X-weapons/X_weapon_base.gd" type="Script" id=1]
+
+[node name="X_weapon" type="Node2D"]
+script = ExtResource( 1 )
+Weapon_Color = Color( 0.964706, 0.65098, 0.207843, 1 )
+
+[node name="Projectile_spawner" type="Node" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
+
+[node name="Sound_container" type="Node" parent="."]
+
+[node name="Sound_loop" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.075
+one_shot = true

@@ -1,0 +1,699 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://sprites/enemies/spr_enemy_giga_death_r.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Enemy/EntityEnemy_Giga_Death.gd" type="Script" id=3]
+[ext_resource path="res://nodes/particles/robot_part_explosion/par_giga_death_parts_exp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/enemies/spr_enemy_giga_death_laser.png" type="Texture" id=5]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sound_assests/projectiles/snd_proj_big_laser.ogg" type="AudioStream" id=7]
+
+[sub_resource type="Shader" id=29]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=47]
+resource_local_to_scene = true
+shader = SubResource( 29 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.34552, 0.796875, 0.766275, 1 )
+shader_param/C2 = Color( 0.556863, 0.901961, 0.878431, 1 )
+shader_param/C3 = Color( 0.803922, 0.945098, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 80, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 1 )
+region = Rect2( 101, 80, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 1 )
+region = Rect2( 202, 80, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 160, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 1 )
+region = Rect2( 101, 160, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 1 )
+region = Rect2( 202, 160, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 1 )
+region = Rect2( 101, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 1 )
+region = Rect2( 202, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 1 )
+region = Rect2( 303, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 1 )
+region = Rect2( 404, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 0, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 1 )
+region = Rect2( 101, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 1 )
+region = Rect2( 202, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 1 )
+region = Rect2( 303, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 1 )
+region = Rect2( 404, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 1 )
+region = Rect2( 505, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 1 )
+region = Rect2( 606, 240, 101, 80 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 1 )
+region = Rect2( 707, 240, 101, 80 )
+
+[sub_resource type="SpriteFrames" id=46]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 63 ) ],
+"loop": false,
+"name": "fire",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"loop": false,
+"name": "intro",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 82 ), SubResource( 69 ), SubResource( 83 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ) ],
+"loop": false,
+"name": "laser",
+"speed": 0.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 259, 7 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 33, 27 )
+
+[sub_resource type="Animation" id=54]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "default" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Position2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -40, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Position2D/laser_start:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Position2D/laser_start:region_enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Position2D/laser_start:region_rect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 30, 63, 9, 21 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/Position2D/laser_loop:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/Position2D/laser_start:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/Position2D/Hitbox/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite/Position2D/laser_loop:region_rect")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( -479, 210, 777, 21 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=64]
+resource_name = "fire_left"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.95 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ "fire", "fire" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationPlayer:current_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ "fire_right" ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( 33, 13 ) ],
+"method": "fire_missle"
+} ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "fire_right"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "fire" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 4, 5, 6, 7 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( 20, 18 ) ],
+"method": "fire_missle"
+} ]
+}
+
+[sub_resource type="Animation" id=66]
+resource_name = "idle"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "default" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "intro"
+length = 0.555556
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "intro" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0555556, 0.111111, 0.222222, 0.333333, 0.444444 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "laser"
+length = 2.78571
+step = 0.0357143
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "laser" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286, 0.321429, 0.785714, 0.857143, 1, 2.46429, 2.53571, 2.60714 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 4, 7, 8, 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Position2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0714286, 0.142857, 0.214286, 0.321429, 0.607143, 0.75, 0.785714, 0.857143, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -40, -7 ), Vector2( -40, -3 ), Vector2( -41, 1 ), Vector2( -40, 0 ), Vector2( -40, 0 ), Vector2( -43, 0 ), Vector2( -38, 0 ), Vector2( -41, 0 ), Vector2( -43, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Position2D/laser_start:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Position2D/laser_start:region_enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Position2D/laser_start:region_rect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.142857, 0.178571, 0.214286, 0.25, 0.285714, 0.321429, 0.357143, 0.392857, 0.428571, 0.464286, 0.5, 0.535714, 0.571429, 0.607143, 0.642857, 0.678571, 0.714286, 0.75, 0.785714, 0.821429, 0.857143, 0.892857, 0.928571, 0.964286, 1, 1.03571, 1.07143, 1.10714, 1.14286, 1.17857, 1.21429, 1.25, 1.28571, 1.32143, 1.35714, 1.39286, 1.42857, 1.46429, 1.5, 1.53571, 1.57143, 1.60714, 1.64286, 1.67857, 1.71429, 1.75, 1.78571, 1.82143, 1.85714, 1.89286, 1.92857, 1.96429, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 0, 42, 39, 40 ), Rect2( 0, 0, 39, 40 ), Rect2( 30, 112, 9, 7 ), Rect2( 30, 151, 9, 13 ), Rect2( 30, 191, 9, 17 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 231, 9, 21 ), Rect2( 30, 273, 9, 21 ), Rect2( 30, 315, 9, 21 ), Rect2( 30, 191, 9, 17 ), Rect2( 30, 151, 9, 13 ), Rect2( 30, 112, 9, 7 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/Position2D/laser_loop:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5, 0.75, 2.03571 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/Position2D/laser_start:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.214286, 2.03571 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/Position2D/Hitbox/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.785714, 1.92857 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite/Position2D/laser_loop:region_rect")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.75, 0.785714, 0.821429, 0.857143, 0.892857, 0.928571, 0.964286, 1, 1.03571, 1.07143, 1.10714, 1.14286, 1.17857, 1.21429, 1.25, 1.28571, 1.32143, 1.35714, 1.39286, 1.42857, 1.46429, 1.5, 1.53571, 1.57143, 1.60714, 1.64286, 1.67857, 1.71429, 1.75, 1.78571, 1.82143, 1.85714, 1.89286, 1.92857, 1.96429, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( -479, 210, 777, 21 ), Rect2( -479, 84, 777, 21 ), Rect2( -479, 126, 777, 21 ), Rect2( -479, 168, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 210, 777, 21 ), Rect2( -479, 252, 777, 21 ), Rect2( -479, 294, 777, 21 ), Rect2( -479, 168, 777, 21 ), Rect2( -479, 126, 777, 21 ), Rect2( -479, 84, 777, 21 ) ]
+}
+tracks/10/type = "audio"
+tracks/10/path = NodePath("AudioStreamPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0.214286 )
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2.03571, 2.53571 ),
+"transitions": PoolRealArray( 1.86607, 1.86607, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -80.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 34 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 35, 36 )
+
+[node name="EntityEnemy_Giga_Death" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+hp_max = 34
+smoke_on_low_health = true
+piece_explosion = ExtResource( 4 )
+sprite_size = Rect2( 0, 0, 80, 70 )
+long_death = true
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource( 47 )
+frames = SubResource( 46 )
+speed_scale = 0.0
+
+[node name="HealthBar" parent="Sprite" index="0"]
+visible = false
+
+[node name="Position2D" type="Position2D" parent="Sprite" index="1"]
+position = Vector2( -40, 0 )
+
+[node name="laser_start" type="Sprite" parent="Sprite/Position2D" index="0"]
+visible = false
+position = Vector2( -2, 1 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 30, 63, 9, 21 )
+
+[node name="laser_loop" type="Sprite" parent="Sprite/Position2D" index="1"]
+visible = false
+position = Vector2( -395, 1 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( -479, 210, 777, 21 )
+
+[node name="Hitbox" parent="Sprite/Position2D" index="2" instance=ExtResource( 6 )]
+collision_mask = 2
+damage = 6
+
+[node name="CollisionShape2D" parent="Sprite/Position2D/Hitbox" index="0"]
+position = Vector2( -257, 0 )
+shape = SubResource( 84 )
+disabled = true
+
+[node name="CenterPoint" parent="Sprite" index="2"]
+position = Vector2( -1, 1 )
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+scale = Vector2( 15.9, 4.05 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, 8 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+autoplay = "intro"
+anims/RESET = SubResource( 54 )
+anims/fire_left = SubResource( 64 )
+anims/fire_right = SubResource( 65 )
+anims/idle = SubResource( 66 )
+anims/intro = SubResource( 55 )
+anims/laser = SubResource( 67 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, 2 )
+shape = SubResource( 4 )
+
+[node name="Hitbox" parent="." index="5"]
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 2, 0 )
+shape = SubResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[connection signal="stop_behavior" from="." to="." method="_on_EntityEnemy_Giga_Death_stop_behavior"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Sprite/Position2D/Hitbox"]
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

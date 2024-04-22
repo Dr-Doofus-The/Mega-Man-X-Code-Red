@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/particle/Particle_Ghost.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 1.0
+
+[node name="Particle_Player_Ghost" type="Sprite"]
+pause_mode = 1
+material = SubResource( 2 )
+position = Vector2( 1, 1 )
+z_index = -1
+script = ExtResource( 3 )

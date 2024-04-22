@@ -1,0 +1,45 @@
+[gd_resource type="BitmapFont" load_steps=7 format=2]
+
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFontSettings.gd" type="Script" id=1]
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFont.gd" type="Script" id=2]
+[ext_resource path="res://addons/texture_fonts/Classes/TextureFontMapping.gd" type="Script" id=3]
+[ext_resource path="res://sprites/Fonts/spr_font_5x7.png" type="Texture" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+char_settings = {
+" ": {
+"advance": 2,
+"offset": Vector2( 0, 0 )
+}
+}
+kerning_pairs = [  ]
+gap = 1
+horizontal_align = 1
+vertical_align = 0
+monospace = false
+preview_color = Color( 0.12549, 0.141176, 0.192157, 1 )
+preview_chars = ""
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+source_texture = ExtResource( 4 )
+scaled_texture = ExtResource( 4 )
+rect_size = Vector2( 5, 7 )
+rect_gap = Vector2( 0, 0 )
+texture_offset = Vector2( 0, 0 )
+scale = 1
+interpolation = 0
+chars = "ABCDEFGH
+IJKLMNOP
+QRSTUVWX
+YZ012345
+6789[]-"
+
+[resource]
+textures = [ ExtResource( 4 ) ]
+chars = PoolIntArray( 32, 0, 0, 0, 0, 0, 0, 0, 3, 56, 0, 10, 28, 5, 7, 1, 0, 6, 48, 0, 10, 21, 5, 7, 1, 0, 6, 88, 0, 35, 14, 5, 7, 1, 0, 6, 80, 0, 35, 7, 5, 7, 1, 0, 6, 72, 0, 35, 0, 5, 7, 1, 0, 6, 57, 0, 15, 28, 5, 7, 1, 0, 6, 49, 0, 16, 21, 3, 7, 1, 0, 4, 89, 0, 0, 21, 5, 7, 1, 0, 6, 81, 0, 0, 14, 5, 7, 1, 0, 6, 73, 0, 1, 7, 2, 7, 1, 0, 3, 65, 0, 0, 0, 5, 7, 1, 0, 6, 50, 0, 20, 21, 5, 7, 1, 0, 6, 90, 0, 5, 21, 5, 7, 1, 0, 6, 82, 0, 5, 14, 5, 7, 1, 0, 6, 74, 0, 5, 7, 5, 7, 1, 0, 6, 66, 0, 5, 0, 5, 7, 1, 0, 6, 91, 0, 21, 28, 3, 7, 1, 0, 4, 51, 0, 26, 21, 4, 7, 1, 0, 5, 83, 0, 10, 14, 5, 7, 1, 0, 6, 75, 0, 10, 7, 5, 7, 1, 0, 6, 67, 0, 10, 0, 5, 7, 1, 0, 6, 52, 0, 30, 21, 5, 7, 1, 0, 6, 84, 0, 15, 14, 4, 7, 1, 0, 5, 76, 0, 15, 7, 4, 7, 1, 0, 5, 68, 0, 15, 0, 5, 7, 1, 0, 6, 45, 0, 31, 28, 3, 7, 1, 0, 4, 93, 0, 26, 28, 3, 7, 1, 0, 4, 53, 0, 35, 21, 5, 7, 1, 0, 6, 85, 0, 20, 14, 5, 7, 1, 0, 6, 77, 0, 20, 7, 5, 7, 1, 0, 6, 69, 0, 20, 0, 5, 7, 1, 0, 6, 54, 0, 0, 28, 5, 7, 1, 0, 6, 86, 0, 25, 14, 5, 7, 1, 0, 6, 78, 0, 25, 7, 5, 7, 1, 0, 6, 70, 0, 25, 0, 5, 7, 1, 0, 6, 55, 0, 5, 28, 5, 7, 1, 0, 6, 87, 0, 30, 14, 5, 7, 1, 0, 6, 79, 0, 30, 7, 5, 7, 1, 0, 6, 71, 0, 30, 0, 5, 7, 1, 0, 6 )
+height = 7.0
+script = ExtResource( 2 )
+texture_mappings = [ SubResource( 2 ) ]
+font_settings = SubResource( 1 )

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://nodes/entity/Items/ItemBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/Pickups/Dna/spr_item_dna_backdrop.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Pickups/Dna/spr_item_dna_icons.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.5, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.5, 9.5 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 19, 19 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ItemBase" instance=ExtResource( 1 )]
+Item_Type = 5
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="2"]
+frames = SubResource( 4 )
+
+[node name="VisibilityNotifier2D" parent="." index="3"]
+position = Vector2( -0.5, -0.5 )
+scale = Vector2( 0.95, 0.95 )
+
+[node name="Sprite" type="Sprite" parent="." index="4"]
+texture = ExtResource( 3 )
+hframes = 6

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_boss_final_hit.wav-99ba0c4394ac012ac215c7701e014912.sample"
+
+[deps]
+
+source_file="res://sound_assests/fx/sfx_boss_final_hit.wav"
+dest_files=[ "res://.import/sfx_boss_final_hit.wav-99ba0c4394ac012ac215c7701e014912.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

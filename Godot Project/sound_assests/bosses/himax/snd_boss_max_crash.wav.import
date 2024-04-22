@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_boss_max_crash.wav-d56480dd7ea39dda9685b9ded50dcbb2.sample"
+
+[deps]
+
+source_file="res://sound_assests/bosses/himax/snd_boss_max_crash.wav"
+dest_files=[ "res://.import/snd_boss_max_crash.wav-d56480dd7ea39dda9685b9ded50dcbb2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

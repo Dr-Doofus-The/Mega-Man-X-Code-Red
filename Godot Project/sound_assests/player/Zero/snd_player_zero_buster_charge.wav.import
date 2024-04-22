@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_player_zero_buster_charge.wav-e244efd06bb2edeebb768532aaf7b56a.sample"
+
+[deps]
+
+source_file="res://sound_assests/player/Zero/snd_player_zero_buster_charge.wav"
+dest_files=[ "res://.import/snd_player_zero_buster_charge.wav-e244efd06bb2edeebb768532aaf7b56a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=66308
+edit/loop_end=83847
+compress/mode=0

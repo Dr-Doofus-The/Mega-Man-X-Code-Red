@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_fire_1.wav-16db2accb7e9705e632c8f31259f98aa.sample"
+
+[deps]
+
+source_file="res://sound_assests/projectiles/snd_fire_1.wav"
+dest_files=[ "res://.import/snd_fire_1.wav-16db2accb7e9705e632c8f31259f98aa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

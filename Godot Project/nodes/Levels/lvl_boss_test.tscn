@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nodes/Levels/Level_Base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/misc/GameCamera_Bounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/entity/GameObjects/Obj_Shutter_Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/entity/Players/Ent_Player_Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://nodes/managers/Boss_Arena.tscn" type="PackedScene" id=5]
+[ext_resource path="res://nodes/entity/Bosses/EntityBoss_Slash_Beast.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sprites/tile/Flame_Mammoth/flame_mammoth_1.tres" type="TileSet" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 209, 121 )
+
+[node name="lvl_boss_test" instance=ExtResource( 1 )]
+__meta__ = {
+"_edit_vertical_guides_": [ 288.0, 576.0 ]
+}
+
+[node name="Ent_player_checkpoint" parent="CheckPoints" index="0" instance=ExtResource( 4 )]
+position = Vector2( 0, -63 )
+start_point = true
+Camera_Bounds_Path = NodePath("../../CameraBounds/Camera_Bounds")
+invisible = true
+
+[node name="Camera_Bounds" parent="CameraBounds" index="0" instance=ExtResource( 2 )]
+
+[node name="ReferenceRect" parent="CameraBounds/Camera_Bounds" index="1"]
+margin_left = -160.0
+margin_top = -208.0
+margin_right = 160.0
+margin_bottom = 32.0
+
+[node name="Camera_Bounds2" parent="CameraBounds" index="1" instance=ExtResource( 2 )]
+
+[node name="ReferenceRect" parent="CameraBounds/Camera_Bounds2" index="1"]
+margin_left = 128.0
+margin_top = -208.0
+margin_right = 576.0
+margin_bottom = 32.0
+
+[node name="Obj_Shutter_Door" parent="Game_Objects" index="0" instance=ExtResource( 3 )]
+position = Vector2( 144, -32 )
+z_index = -1
+Next_Room_path = NodePath("../../CameraBounds/Camera_Bounds2/ReferenceRect")
+boss_door = true
+
+[node name="Boss_Arena" parent="Game_Objects" index="1" instance=ExtResource( 5 )]
+position = Vector2( 370, -88 )
+player_walk_to_point = 316
+camera_postion = Vector2( 416, -88 )
+
+[node name="CollisionShape2D" parent="Game_Objects/Boss_Arena" index="0"]
+shape = SubResource( 1 )
+
+[node name="EntityBoss" parent="Game_Objects/Boss_Arena/Boss_container" index="0" instance=ExtResource( 6 )]
+
+[node name="Cutscene_Cam" parent="Game_Objects/Boss_Arena" index="2"]
+position = Vector2( 30, -216 )
+
+[node name="TileMap" type="TileMap" parent="." index="13"]
+z_index = -6
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 16 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( -917514, 2, 131075, -983032, 2, 131074, -983031, 2, 131075, -851978, 2, 131075, -917496, 2, 131074, -917495, 2, 131075, -917494, 2, 262150, -917493, 2, 262152, -917492, 2, 262151, -917491, 2, 327680, -917490, 2, 262150, -917489, 2, 262152, -917488, 2, 262151, -917487, 2, 327680, -917486, 2, 262150, -917485, 2, 262152, -917484, 2, 262151, -917483, 2, 327680, -917482, 2, 262150, -917481, 2, 262152, -917480, 2, 262151, -917479, 2, 327680, -917478, 2, 262150, -917477, 2, 262152, -917476, 2, 262151, -917475, 2, 327680, -917474, 2, 262150, -917473, 2, 262152, -917472, 2, 262151, -917471, 2, 327680, -917470, 2, 262150, -917469, 2, 131074, -786442, 2, 131075, -786441, 2, 262152, -786440, 2, 262152, -786439, 2, 262151, -786438, 2, 327680, -786437, 2, 262150, -786436, 2, 262152, -786435, 2, 262151, -786434, 2, 327680, -786433, 2, 262150, -851968, 2, 262152, -851967, 2, 262151, -851966, 2, 327680, -851965, 2, 262150, -851964, 2, 262152, -851963, 2, 262151, -851962, 2, 327680, -851961, 2, 262150, -851960, 2, 131074, -851959, 2, 131075, -851933, 2, 131074, -720906, 2, 131075, -786424, 2, 131074, -786423, 2, 131075, -786397, 2, 131074, -655370, 2, 131075, -720888, 2, 131074, -720887, 2, 131075, -720861, 2, 131074, -589834, 2, 131075, -655352, 2, 131074, -655351, 2, 131075, -655325, 2, 131074, -524298, 2, 131075, -589816, 2, 131074, -589815, 2, 131075, -589789, 2, 131074, -458762, 2, 131075, -524280, 2, 131074, -524279, 2, 131075, -524253, 2, 131074, -393226, 2, 131075, -458744, 2, 131074, -458743, 2, 131075, -458717, 2, 131074, -327690, 2, 131075, -393208, 2, 131074, -393207, 2, 131075, -393181, 2, 131074, -262154, 2, 131075, -327672, 2, 196608, -327671, 2, 196609, -327645, 2, 131074, -196618, 2, 131075, -262109, 2, 131074, -131082, 2, 131075, -196573, 2, 131074, -65546, 2, 131075, -131037, 2, 131074, -10, 2, 131075, -9, 2, 0, -8, 2, 0, -7, 2, 0, -6, 2, 0, -5, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 65539, -65527, 2, 65540, -65526, 2, 0, -65525, 2, 0, -65524, 2, 0, -65523, 2, 0, -65522, 2, 0, -65521, 2, 0, -65520, 2, 0, -65519, 2, 0, -65518, 2, 0, -65517, 2, 0, -65516, 2, 0, -65515, 2, 0, -65514, 2, 0, -65513, 2, 0, -65512, 2, 0, -65511, 2, 0, -65510, 2, 0, -65509, 2, 0, -65508, 2, 0, -65507, 2, 0, -65506, 2, 0, -65505, 2, 0, -65504, 2, 0, -65503, 2, 0, -65502, 2, 0, -65501, 2, 131074, 65526, 2, 131075, 65527, 2, 65536, 65528, 2, 65536, 65529, 2, 65536, 65530, 2, 65536, 65531, 2, 65536, 65532, 2, 65536, 65533, 2, 65536, 65534, 2, 65536, 65535, 2, 65536, 0, 2, 65536, 1, 2, 65536, 2, 2, 65536, 3, 2, 65536, 4, 2, 65536, 5, 2, 65536, 6, 2, 65536, 7, 2, 65536, 8, 2, 3, 9, 2, 65541, 10, 2, 65536, 11, 2, 65536, 12, 2, 65536, 13, 2, 65536, 14, 2, 65536, 15, 2, 65536, 16, 2, 65536, 17, 2, 65536, 18, 2, 65536, 19, 2, 65536, 20, 2, 65536, 21, 2, 65536, 22, 2, 65536, 23, 2, 65536, 24, 2, 65536, 25, 2, 65536, 26, 2, 65536, 27, 2, 65536, 28, 2, 65536, 29, 2, 65536, 30, 2, 65536, 31, 2, 65536, 32, 2, 65536, 33, 2, 65536, 34, 2, 65536, 35, 2, 131074, 131062, 2, 131075, 131063, 2, 65537, 131064, 2, 1, 131065, 2, 65537, 131066, 2, 1, 131067, 2, 65537, 131068, 2, 1, 131069, 2, 65537, 131070, 2, 1, 131071, 2, 65537, 65536, 2, 1, 65537, 2, 65537, 65538, 2, 1, 65539, 2, 65537, 65540, 2, 1, 65541, 2, 65537, 65542, 2, 1, 65543, 2, 65537, 65544, 2, 65538, 65545, 2, 4, 65546, 2, 1, 65547, 2, 65537, 65548, 2, 1, 65549, 2, 65537, 65550, 2, 1, 65551, 2, 65537, 65552, 2, 1, 65553, 2, 65537, 65554, 2, 1, 65555, 2, 65537, 65556, 2, 1, 65557, 2, 65537, 65558, 2, 1, 65559, 2, 65537, 65560, 2, 1, 65561, 2, 65537, 65562, 2, 1, 65563, 2, 65537, 65564, 2, 1, 65565, 2, 65537, 65566, 2, 1, 65567, 2, 65537, 65568, 2, 1, 65569, 2, 65537, 65570, 2, 1, 65571, 2, 131074 )
+
+[editable path="CameraBounds/Camera_Bounds"]
+[editable path="CameraBounds/Camera_Bounds2"]
+[editable path="Game_Objects/Boss_Arena"]

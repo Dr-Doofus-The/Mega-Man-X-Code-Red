@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://nodes/entity/EntityBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_shield.png" type="Texture" id=2]
+[ext_resource path="res://nodes/entity/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_rolling_shield.gd" type="Script" id=4]
+[ext_resource path="res://sound_assests/projectiles/snd_shield_bounce.wav" type="AudioStream" id=5]
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 132, 0, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 44, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 44, 44, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 44, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 44, 0, 44, 44 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 0, 44, 44 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": false,
+"name": "start",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 20, 20 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 21, 21 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 22, 24 )
+
+[node name="PROJ_ROLLING_SHIELD" instance=ExtResource( 1 )]
+collision_layer = 0
+script = ExtResource( 4 )
+hp_max = 1
+hp = 1
+
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 5 )
+playing = true
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+rect = Rect2( -22, -22, 44, 44 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 6 )
+
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 7 )
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource( 3 )]
+collision_layer = 16
+collision_mask = 4
+damage = 12
+hitbox_name = "ROLLING_SHIELD"
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 5 )
+bus = "Projectiles"
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="damage_dealt" from="Hitbox" to="." method="_on_Hitbox_damage_dealt"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/texture_fonts/UI/Components/Vector2Edit.gd" type="Script" id=1]
+
+[node name="Vector2Edit" type="VBoxContainer"]
+anchor_right = 0.179
+anchor_bottom = 0.07
+margin_right = -32.2959
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+min_value = null
+max_value = null
+value = null
+label = null
+
+[node name="Heading" type="HBoxContainer" parent="."]
+margin_right = 183.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Heading"]
+margin_right = 34.0
+margin_bottom = 14.0
+text = "Label"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Heading"]
+margin_left = 38.0
+margin_right = 183.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="Values" type="HBoxContainer" parent="."]
+margin_top = 18.0
+margin_right = 183.0
+margin_bottom = 42.0
+
+[node name="XLabel" type="Label" parent="Values"]
+margin_top = 5.0
+margin_right = 12.0
+margin_bottom = 19.0
+text = "X:"
+
+[node name="X" type="SpinBox" parent="Values"]
+margin_left = 16.0
+margin_right = 90.0
+margin_bottom = 24.0
+min_value = -100.0
+
+[node name="YLabel" type="Label" parent="Values"]
+margin_left = 94.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 19.0
+text = "Y:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Y" type="SpinBox" parent="Values"]
+margin_left = 109.0
+margin_right = 183.0
+margin_bottom = 24.0
+min_value = -100.0
+
+[connection signal="value_changed" from="Values/X" to="." method="_on_X_value_changed"]
+[connection signal="value_changed" from="Values/Y" to="." method="_on_Y_value_changed"]

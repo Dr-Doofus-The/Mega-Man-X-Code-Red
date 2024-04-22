@@ -1,0 +1,167 @@
+[
+    {
+        "weaponid": 0,
+        "weaponname": "X-Buster",
+        "weapondesc": "The X-buster fire compressed solar energy. Hold down the fire button to charge the buster"
+    },
+    {
+        "weaponid": 1,
+        "weaponname": "Gun Strike",
+        "weapondesc": "GUNGAROO WEAPON DESC"
+    },
+    {
+        "weaponid": 2,
+        "weaponname": "Wind Cutter",
+        "weapondesc": "CROWRANG WEAPON DESC"
+    },
+    {
+        "weaponid": 3,
+        "weaponname": "Moving Wheel",
+        "weapondesc": "BOARSKI WEAPON DESC"
+    },
+    {
+        "weaponid": 4,
+        "weaponname": "Splash Laser",
+        "weapondesc": "WARFLY WEAPON DESC"
+    },
+    {
+        "weaponid": 5,
+        "weaponname": "Volt Tornado",
+        "weapondesc": "TONION WEAPON DESC"
+    },
+    {
+        "weaponid": 6,
+        "weaponname": "Gaea Shield",
+        "weapondesc": "STONEKONG WEAPON DESC"
+    },
+    {
+        "weaponid": 7,
+        "weaponname": "Sniper Missle",
+        "weapondesc": "ANTEATOR WEAPON DESC"
+    },
+    {
+        "weaponid": 8,
+        "weaponname": "Circle Blaze",
+        "weapondesc": "HYENARD WEAPON DESC"
+    },
+    {
+        "weaponid": 9,
+        "weaponname": "NORMAL_GIGA",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 10,
+        "weaponname": "GLIDE_GIGA",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 11,
+        "weaponname": "BLADE_GIGA",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 12,
+        "weaponname": "NEO_BLADE_GIGA",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 13,
+        "weaponname": "ULTIMATE_GIGA",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 14,
+        "weaponname": "Z-saber",
+        "weapondesc": "The Z-saber emits a powerful close-range beam. Press the fire 3 times consecutevly to do a combo"
+    },
+    {
+        "weaponid": 15,
+        "weaponname": "GUNGAROO TECH",
+        "weapondesc": "GUNGAROO TECH DESC"
+    },
+    {
+        "weaponid": 16,
+        "weaponname": "CROWRANG TECH",
+        "weapondesc": "CROWRANG TECH DESC"
+    },
+    {
+        "weaponid": 17,
+        "weaponname": "BOARSKI TECH",
+        "weapondesc": "BOARSKI TECH DESC"
+    },
+    {
+        "weaponid": 18,
+        "weaponname": "WARFLY TECH",
+        "weapondesc": "WARFLY TECH DESC"
+    },
+    {
+        "weaponid": 19,
+        "weaponname": "Raijinshou",
+        "weapondesc": "TONION TECH DESC"
+    },
+    {
+        "weaponid": 20,
+        "weaponname": "STONEKONG TECH",
+        "weapondesc": "STONEKONG TECH DESC"
+    },
+    {
+        "weaponid": 21,
+        "weaponname": "ANTEATOR TECH",
+        "weapondesc": "ANTEATOR TECH DESC"
+    },
+    {
+        "weaponid": 22,
+        "weaponname": "HYENARD TECH",
+        "weapondesc": "HYENARD TECH DESC"
+    },
+    {
+        "weaponid": 23,
+        "weaponname": "Axl Bullet",
+        "weapondesc": "a"
+    },
+    {
+        "weaponid": 24,
+        "weaponname": "G-launcher",
+        "weapondesc": "GUNGAROO GUN DESC"
+    },
+    {
+        "weaponid": 25,
+        "weaponname": "W-Bolt",
+        "weapondesc": "CROWRANG GUN DESC"
+    },
+    {
+        "weaponid": 26,
+        "weaponname": "R-Blaster",
+        "weapondesc": "BOARSKI GUN DESC"
+    },
+    {
+        "weaponid": 27,
+        "weaponname": "H-Cannon",
+        "weapondesc": "WARFLY GUN DESC"
+    },
+    {
+        "weaponid": 28,
+        "weaponname": "V-Zapper",
+        "weapondesc": "TONION GUN DESC"
+    },
+    {
+        "weaponid": 29,
+        "weaponname": "S-Thrower",
+        "weapondesc": "STONEKONG GUN DESC"
+    },
+    {
+        "weaponid": 30,
+        "weaponname": "A-Rocket",
+        "weapondesc": "HYENARD GUN DESC"
+    },
+    {
+        "weaponid": 31,
+        "weaponname": "D-Bullet",
+        "weapondesc": "HYENARD GUN DESC"
+    },
+    {
+        "weaponid": 32,
+        "weaponname": "null",
+        "weapondesc": "h"
+    }
+]

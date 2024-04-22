@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/entity/Players/X/Weapons/X_weapon_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/entity/Projectile/Player/X/Weapons/proj_X_b_cutter.tscn" type="PackedScene" id=3]
+
+[node name="Boomerrang_Cutter" instance=ExtResource( 2 )]
+Weapon_Icon_Frame = 7
+normal_shot = ExtResource( 3 )
+normal_shot_cost = 1
+charged_shot_cost = 2
+max_on_screen = 3
+Ammo_capacity = 28
+color_palette_coordinate = Vector2( 0, 0.387 )
+fire_color_palette_coordinate = Vector2( 0.114, 0.387 )
+Weapon_Color = Color( 0.678431, 0.745098, 0.792157, 1 )

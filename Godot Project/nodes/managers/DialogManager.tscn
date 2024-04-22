@@ -1,0 +1,329 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://fonts/7x10_font.tres" type="BitmapFont" id=1]
+[ext_resource path="res://scripts/managers/DialogManager.gd" type="Script" id=2]
+[ext_resource path="res://sound_assests/ui/hud/ui_text_box_letter.wav" type="AudioStream" id=3]
+[ext_resource path="res://sprites/UI/HUD/ui_text_box.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 160, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 240, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 320, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 400, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 480, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 560, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 640, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 720, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 800, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 880, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 80, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 880, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 800, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 720, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 640, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 560, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 480, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 400, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 240, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 320, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 160, 350, 80 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 80, 350, 80 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "Close",
+"speed": 20.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 26.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": false,
+"name": "Open",
+"speed": 20.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Close_Dialog_Box"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialogbox/Box/Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Portrait:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dialogbox/Box/AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Close" ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open_Dialog_Box"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialogbox/Box/Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Portrait:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Dialogbox/Box/AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Open" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Dialogbox/Box/AnimatedSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Dialogbox/Box/AnimatedSprite:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Dialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Dialogbox" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -213.0
+margin_top = -103.0
+margin_right = 213.0
+rect_pivot_offset = Vector2( 20, 0 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="ColorRect" parent="Dialogbox"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 38.0
+margin_top = 11.0
+margin_right = 388.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 350, 80 )
+rect_pivot_offset = Vector2( 165, 19 )
+color = Color( 0, 0.180392, 0.72549, 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Dialogbox/Box"]
+frames = SubResource( 24 )
+animation = "Close"
+frame = 9
+playing = true
+centered = false
+
+[node name="Text" type="RichTextLabel" parent="Dialogbox/Box"]
+visible = false
+margin_left = 15.0
+margin_top = 12.0
+margin_right = 335.0
+margin_bottom = 68.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "TEST"
+text = "TEST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="HSplitContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -186.0
+margin_top = 16.0
+margin_right = 186.0
+margin_bottom = 136.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Portrait"]
+margin_right = 180.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 180, 120 )
+size_flags_horizontal = 0
+color = Color( 0, 0.301961, 1, 1 )
+
+[node name="Portrait_ID0" type="AnimatedSprite" parent="Portrait/ColorRect"]
+position = Vector2( 90, 60 )
+flip_h = true
+
+[node name="Portrait_ID0_Mouth" type="AnimatedSprite" parent="Portrait/ColorRect/Portrait_ID0"]
+flip_h = true
+
+[node name="Portrait_ID0_Eyes" type="AnimatedSprite" parent="Portrait/ColorRect/Portrait_ID0"]
+playing = true
+flip_h = true
+
+[node name="ColorRect2" type="ColorRect" parent="Portrait"]
+margin_left = 192.0
+margin_right = 372.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 180, 120 )
+size_flags_horizontal = 0
+color = Color( 0, 0.301961, 1, 1 )
+
+[node name="Portrait_ID1" type="AnimatedSprite" parent="Portrait/ColorRect2"]
+position = Vector2( 90, 60 )
+
+[node name="Portrait_ID1_Mouth" type="AnimatedSprite" parent="Portrait/ColorRect2/Portrait_ID1"]
+
+[node name="Portrait_ID1_Eyes" type="AnimatedSprite" parent="Portrait/ColorRect2/Portrait_ID1"]
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close_Dialog_Box = SubResource( 3 )
+anims/Open_Dialog_Box = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[connection signal="animation_finished" from="Dialogbox/Box/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="animation_finished" from="Portrait/ColorRect/Portrait_ID0/Portrait_ID0_Mouth" to="." method="_on_Portrait_ID0_Mouth_animation_finished"]

@@ -1,0 +1,194 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://nodes/entity/Enemies/EntityEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/enemies/spr_enemy_frog.png" type="Texture" id=2]
+[ext_resource path="res://scripts/entity/Enemy/EntityEnemy_Frog.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=29]
+code = "shader_type canvas_item;
+
+uniform float color_palette_modifier : hint_range(0.0, 1.0) = 0.0;
+
+uniform int numberOfColors : hint_range(1, 3);
+uniform vec4 C1 : hint_color;
+uniform vec4 C2 : hint_color;
+uniform vec4 C3 : hint_color;
+
+
+void fragment(){
+	vec4 referenceColors[12];
+	referenceColors[0] = C1;
+	referenceColors[1] = C2;
+	referenceColors[2] = C3;
+
+	
+	vec4 textureColor = texture(TEXTURE, UV);
+	
+
+	COLOR.rgb = mix(textureColor.rgb,referenceColors[int(floor(textureColor.r * float(numberOfColors)))].rgb,color_palette_modifier);
+	COLOR.a = textureColor.a;
+
+}"
+
+[sub_resource type="ShaderMaterial" id=30]
+resource_local_to_scene = true
+shader = SubResource( 29 )
+shader_param/color_palette_modifier = 0.0
+shader_param/numberOfColors = 3
+shader_param/C1 = Color( 0.34552, 0.796875, 0.766275, 1 )
+shader_param/C2 = Color( 0.556863, 0.901961, 0.878431, 1 )
+shader_param/C3 = Color( 0.803922, 0.945098, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 65, 46 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 2 )
+region = Rect2( 204, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 46, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 2 )
+region = Rect2( 68, 46, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 2 )
+region = Rect2( 136, 46, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 92, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 2 )
+region = Rect2( 68, 92, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 2 )
+region = Rect2( 136, 92, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 2 )
+region = Rect2( 204, 92, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 2 )
+region = Rect2( 68, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 2 )
+region = Rect2( 136, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 2 )
+region = Rect2( 204, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 2 )
+region = Rect2( 136, 46, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 2 )
+region = Rect2( 204, 46, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 2 )
+region = Rect2( 68, 0, 68, 46 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 68, 46 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ SubResource( 35 ) ],
+"loop": true,
+"name": "!idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "Fall",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 49 ), SubResource( 50 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 52 ), SubResource( 52 ) ],
+"loop": false,
+"name": "Flies",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": false,
+"name": "Jump",
+"speed": 18.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": false,
+"name": "Land",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 20, 16.5 )
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 15, 17 )
+
+[sub_resource type="RectangleShape2D" id=47]
+extents = Vector2( 13, 16 )
+
+[node name="EntityEnemy_Frog" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+hp_max = 9
+enemy_reaction_time = 0.05
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource( 30 )
+frames = SubResource( 44 )
+animation = "Flies"
+frame = 8
+playing = true
+
+[node name="HealthBar" parent="Sprite" index="0"]
+visible = false
+
+[node name="CenterPoint" parent="Sprite" index="1"]
+position = Vector2( -2, -1 )
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+position = Vector2( -2.5, -0.5 )
+scale = Vector2( 2.15, 1.95 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 45 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 46 )
+
+[node name="Hitbox" parent="." index="5"]
+damage = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 47 )
+
+[node name="reaction_time" parent="." index="8"]
+autostart = false
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
+[connection signal="timeout" from="reaction_time" to="." method="_on_reaction_time_timeout"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

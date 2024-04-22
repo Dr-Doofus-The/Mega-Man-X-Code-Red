@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_pla_voice_zero_x6_death.wav-3b79e105e7ba839c510e916c96c9f16b.sample"
+
+[deps]
+
+source_file="res://sound_assests/player/Zero/Voice/X6/snd_pla_voice_zero_x6_death.wav"
+dest_files=[ "res://.import/snd_pla_voice_zero_x6_death.wav-3b79e105e7ba839c510e916c96c9f16b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

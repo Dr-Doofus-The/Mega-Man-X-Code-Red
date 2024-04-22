@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_homing_torpedo_charged_spawn.gd" type="Script" id=1]
+
+[node name="Proj_homing_torpedo_charged_spawner" type="Node2D"]
+script = ExtResource( 1 )

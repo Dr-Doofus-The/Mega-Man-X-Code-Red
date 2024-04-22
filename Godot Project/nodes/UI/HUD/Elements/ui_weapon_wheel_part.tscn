@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/UI/HUD/misc/spr_ui_x_weapon_wheel.png" type="Texture" id=1]
+[ext_resource path="res://scripts/UI/misc/ui_weapon_wheel_part.gd" type="Script" id=2]
+
+[node name="ui_weapon_wheel_part" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 3
+frame = 8
+script = ExtResource( 2 )
+
+[node name="ui_weapon_wheel_part_backdrop" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 3

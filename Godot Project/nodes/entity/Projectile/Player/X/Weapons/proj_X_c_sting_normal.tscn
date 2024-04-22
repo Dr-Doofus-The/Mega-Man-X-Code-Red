@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_cham_sting.png" type="Texture" id=1]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_c_sting_normal.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 88, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 132, 0, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 31, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 44, 31, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 88, 31, 44, 31 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 132, 31, 44, 31 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), null ],
+"loop": false,
+"name": "Split",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 21, 4.5 )
+
+[node name="Area2D" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+projectile_speed = 7
+ProjClass = "Proj_Bullet"
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 8 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+visible = false
+scale = Vector2( 2.1, 0.5 )
+
+[node name="Hitbox" parent="." index="4"]
+visible = false
+collision_layer = 16
+collision_mask = 4
+damage = 7
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="." index="5"]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

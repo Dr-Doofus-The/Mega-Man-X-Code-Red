@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/projectile/x_buster_level_3_particle_trail.png" type="Texture" id=1]
+[ext_resource path="res://nodes/particles/Projectile_trail_particle.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.39
+emission_shape = 1
+emission_sphere_radius = 11.1
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, -30, 0 )
+initial_velocity = 153.19
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -500.0
+anim_speed = 1.0
+
+[node name="Particles2D" instance=ExtResource( 2 )]
+material = SubResource( 2 )
+amount = 16
+lifetime = 0.4
+visibility_rect = Rect2( -250, -250, 500, 500 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )

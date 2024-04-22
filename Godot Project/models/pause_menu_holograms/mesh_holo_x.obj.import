@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/mesh_holo_x.obj-422706546ad559b1201128ee068276fa.mesh"
+
+[deps]
+
+files=[ "res://.import/mesh_holo_x.obj-422706546ad559b1201128ee068276fa.mesh" ]
+
+source_file="res://models/pause_menu_holograms/mesh_holo_x.obj"
+dest_files=[ "res://.import/mesh_holo_x.obj-422706546ad559b1201128ee068276fa.mesh", "res://.import/mesh_holo_x.obj-422706546ad559b1201128ee068276fa.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

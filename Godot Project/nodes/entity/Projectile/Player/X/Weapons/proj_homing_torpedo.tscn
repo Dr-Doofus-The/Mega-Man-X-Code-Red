@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scripts/entity/Projectile/Player/X/Weapons/proj_homing_torpedo.gd" type="Script" id=1]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_torpedo.png" type="Texture" id=2]
+[ext_resource path="res://nodes/entity/ProjectileBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound_assests/projectiles/snd_rocket_thruster.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/projectile/Player/X/Weapons/spr_proj_player_torpedo_up.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 12, 12 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 40, 14, 40, 14 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 28, 28 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "Up",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 40, 14 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 40, 0, 40, 14 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 14, 40, 14 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 9, 7.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 426.0
+
+[node name="proj_homing_torpedo" instance=ExtResource( 3 )]
+collision_mask = 64
+script = ExtResource( 1 )
+projectile_speed = 400
+flip_to_match_dire = false
+ProjClass = "Proj_Null"
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 10 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 1 )
+animation = "Up"
+offset = Vector2( -7, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AnimatedSprite" index="0"]
+show_behind_parent = true
+frames = SubResource( 8 )
+playing = true
+offset = Vector2( -7, 0 )
+
+[node name="Smoke_fx_spawn_point" type="Position2D" parent="AnimatedSprite" index="1"]
+position = Vector2( -12, 0 )
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+rect = Rect2( -30, -30, 60, 60 )
+
+[node name="Hitbox" parent="." index="4"]
+collision_layer = 16
+collision_mask = 4
+damage = 9
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 3 )
+
+[node name="Enemy_Detector" type="Area2D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_Detector" index="0"]
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="." index="6"]
+process_mode = 0
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource( 4 )
+volume_db = -3.0
+bus = "Projectiles"
+
+[connection signal="body_entered" from="Enemy_Detector" to="." method="_on_Enemy_Detector_body_entered"]
+[connection signal="body_exited" from="Enemy_Detector" to="." method="_on_Enemy_Detector_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

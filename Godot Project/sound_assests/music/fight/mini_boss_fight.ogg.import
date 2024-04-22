@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mini_boss_fight.ogg-2db2925822d9dabadb91d40a73015363.oggstr"
+
+[deps]
+
+source_file="res://sound_assests/music/fight/mini_boss_fight.ogg"
+dest_files=[ "res://.import/mini_boss_fight.ogg-2db2925822d9dabadb91d40a73015363.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=30000.0

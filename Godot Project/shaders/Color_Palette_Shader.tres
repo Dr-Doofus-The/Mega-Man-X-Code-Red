@@ -1,0 +1,19 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D palette;
+uniform vec2 frame_count;
+uniform vec2 frame_coordinate;
+
+
+
+void fragment() {
+	vec4 rgba = texture(TEXTURE, UV);
+	vec4 final_color = texture(palette, vec2(rgba.r, rgba.g)/(frame_count + vec2(1.0,1.0)) + frame_coordinate);
+	final_color.a = rgba.a;
+	
+	COLOR = final_color;
+}"

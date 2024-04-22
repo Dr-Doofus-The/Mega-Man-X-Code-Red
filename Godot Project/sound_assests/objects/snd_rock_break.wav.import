@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snd_rock_break.wav-958742c259a1c6789e8323c502d89a0c.sample"
+
+[deps]
+
+source_file="res://sound_assests/objects/snd_rock_break.wav"
+dest_files=[ "res://.import/snd_rock_break.wav-958742c259a1c6789e8323c502d89a0c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
