@@ -16,4 +16,5 @@ The game runs on Godot 3.5
 
 ## Notice
 Mega Man X Code Red is not affiliated with CAPCOM in any way.
+
 Mega Man X and all Mega Man/Rockman material are owned by CAPCOM.
